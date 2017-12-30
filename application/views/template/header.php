@@ -20,7 +20,7 @@
     <body>
 	    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 	      <a class="navbar-brand" href="/"><img src="<?php echo base_url(); ?>assets/img/poaimage.png" /></a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault">
 	        <span class="navbar-toggler-icon"></span>
 	      </button>
 	
@@ -49,7 +49,7 @@
                 <li><a href="<?php echo base_url(); ?>tools/opcode">Byte to OPCode</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Contribute</li>
-                <li><a href="https://github.com/acravenho/poaexplorer.com">Github</a></li>
+                <li><a target="_blank" href="https://github.com/acravenho/poaexplorer.com">Github</a></li>
               </ul>
             </li>
 	          

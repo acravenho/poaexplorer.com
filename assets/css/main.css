@@ -206,7 +206,7 @@ a {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #333;
+  color: rgba(255,255,255,.5);
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
