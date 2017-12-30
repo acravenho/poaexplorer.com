@@ -181,7 +181,7 @@ a {
   font-size: 14px;
   text-align: left;
   list-style: none;
-  background-color: #fff;
+  background-color: #622c99;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
   border: 1px solid #ccc;
@@ -255,7 +255,7 @@ a {
   padding: 3px 20px;
   font-size: 12px;
   line-height: 1.42857143;
-  color: #777;
+  color: #fff;
   white-space: nowrap;
 }
 .dropdown-backdrop {
