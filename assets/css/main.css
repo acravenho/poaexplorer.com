@@ -477,3 +477,7 @@ a {
     background-color: transparent;
   }
 }
+
+.navbar-collapse.collapse.in {
+  display: block!important;
+}
