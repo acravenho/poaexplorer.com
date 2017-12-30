@@ -1,0 +1,61 @@
+h1,h2,h3,h4,h5,body {
+	font-family: Open Sans,sans-serif;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 12px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  font-size: 12px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  font-size: 12px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-size: 12px;
+}
+
+main, footer {
+	margin-top: 35px;
+}
+
+
+.small {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.navbar-brand {
+	margin-right: 4rem;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+	margin-right: 24px;
+}
+
+.bg-dark {
+	background-color: #622c99!important;
+}
+
+.btn-outline-primary {
+    color: #ffffff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #ffffff;
+}
+
+.badge-primary {
+    color: #fff;
+    background-color: #622c99;
+}
+
+a {
+	color: #72b8fd;
+}
+
+.transaction_table tbody {
+	font-size: 12px;
+}
+
+.navbar-brand img {
+	height: 40px;
+}
