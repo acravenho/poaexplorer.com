@@ -11,6 +11,7 @@
         <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main.css">
         <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>favicon-16x16.png">
@@ -40,6 +41,17 @@
 	          <li class="nav-item <?php echo ($active == 'richlist' ? 'active' : ''); ?>">
 	            <a class="nav-link" href="<?php echo base_url(); ?>richlist">Rich List</a>
 	          </li>
+	          <li class="nav-item dropdown">
+              <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tools <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li><a href="<?php echo base_url(); ?>tools/api">API</a></li>
+                <li><a href="<?php echo base_url(); ?>tools/verify">Verify Contract</a></li>
+                <li><a href="<?php echo base_url(); ?>tools/opcode">Byte to OPCode</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Contribute</li>
+                <li><a href="https://github.com/acravenho/poaexplorer.com">Github</a></li>
+              </ul>
+            </li>
 	          
 	          
 	        </ul>
