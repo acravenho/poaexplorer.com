@@ -15,8 +15,8 @@
 						echo '<tr>';
 							echo '<td><a href="/blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
 							echo '<td><a href="/txid/search/'.$t->txid.'">'.substr($t->txid, 0, 15).'...</a></td>';
-							echo '<td><a '.($t->to == $this->uri->segment(3) ? ' style="color:#5653a1;"' : '').' href="/address/search/'.$t->to.'">'.substr($t->to, 0, 15).'...</a></td>';
-							echo '<td><a '.($t->from == $this->uri->segment(3) ? ' style="color:#5653a1;"' : '').' href="/address/search/'.$t->from.'">'.substr($t->from, 0, 15).'...</a></td>';
+							echo '<td>'.($t->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a '.($t->to == $this->uri->segment(3) ? ' style="color:#5653a1;"' : '').' href="/address/search/'.$t->to.'">'.substr($t->to, 0, 15).'...</a></td>';
+							echo '<td>'.($t->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a '.($t->from == $this->uri->segment(3) ? ' style="color:#5653a1;"' : '').' href="/address/search/'.$t->from.'">'.substr($t->from, 0, 15).'...</a></td>';
 							echo '<td>'.$t->transactionValue.'</td>';
 						echo '</tr>';
 					}
@@ -27,7 +27,20 @@
 			}
 		?>
 		
-		
+		<?php 
+			if($contract == 1)
+			{
+				echo '<div class="contract_code">';
+				echo '<p class="lead">Contract Creation Code</p>';
+				echo '<hr />';
+				echo '<figure class="highlight contractCode">';
+				echo '<pre>';
+					
+				echo '</pre>';		
+				echo '</figure>';
+				echo '</div>';
+			}	
+		?>
 	
 	</div>
 	<div class="col-md-4">

@@ -19,6 +19,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/web3.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/plugins.js"></script>
+        <script src="https://use.fontawesome.com/8f2b480224.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
         
         <?php echo (!empty($scripts) ? $scripts : '');		?>

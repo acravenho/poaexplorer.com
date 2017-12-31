@@ -75,9 +75,23 @@
 	        
 	        $sql = $this->db->get('transactions');
 	        if($sql->num_rows() > 0) {
-		        return $sql->result();
+		        $results = array();
+		        foreach($sql->result() as $row) {
+			        $row->to_contract = $this->is_contract($row->to);
+			        $row->from_contract = $this->is_contract($row->from);
+			        $results[] = $row;
+		        }
+		        return $results;
 	        } else {
 		        return false;
+	        }
+        }
+        
+        public function is_contract($wallet) {
+	        $sql = $this->db->get_where('wallets', array('wallet' => $wallet));
+	        if($sql->num_rows() > 0) {
+		        $row = $sql->row();
+		        return $row->contract;
 	        }
         }
         
@@ -113,7 +127,13 @@
 	        $this->db->order_by('blockNumber', 'DESC');
 	        $sql = $this->db->get('transactions');
 	        if($sql->num_rows() > 0) {
-		        return $sql->result();
+		        $results = array();
+		        foreach($sql->result() as $row) {
+			        $row->to_contract = $this->is_contract($row->to);
+			        $row->from_contract = $this->is_contract($row->from);
+			        $results[] = $row;
+		        }
+		        return $results;
 	        } else {
 		        return false;
 	        }

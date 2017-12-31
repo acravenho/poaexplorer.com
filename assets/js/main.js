@@ -49,6 +49,13 @@
         //});
     }
     
+    function getContractCode(wallet) 
+    {
+	    var contractCode = poa.eth.getCode(wallet);
+	    $('.contractCode pre').html(contractCode);
+    }
+    
+    
     
     function getTransaction(hash) {
 	    var transaction = poa.eth.getTransaction(hash);

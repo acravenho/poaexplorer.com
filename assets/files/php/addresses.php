@@ -1,6 +1,6 @@
 <?php
 	require 'includes/database.php';
-	
+	$poa = new Ethereum('https://core.poa.network', '');
 	
 	$sql = "SELECT * FROM transactions";
 	$res = $link->query($sql);
@@ -35,10 +35,21 @@
 	
 	function insert_wallet($wallet) {
 		global $link;
-		$sql = "INSERT INTO wallets (wallet) VALUES ('".prepareData($wallet)."')";
+		$is_contract = is_contract($wallet);
+		$sql = "INSERT INTO wallets (wallet, contract) VALUES ('".prepareData($wallet)."', '".prepareData($is_contract)."')";
 		if(!$link->query($sql)) {
 			printf("Errormessage: %s\n", mysqli_error($link));
 		}
+	}
+	
+	function is_contract($wallet) {
+		global $poa;
+		$code = $poa->eth_getCode($wallet);
+		
+		if($code=='0x') {
+			return 0;
+		}
+		return 1;
 	}
 	
 	
