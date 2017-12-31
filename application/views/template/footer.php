@@ -20,7 +20,7 @@
         <script src="<?php echo base_url(); ?>assets/js/web3.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/plugins.js"></script>
         <script src="https://use.fontawesome.com/8f2b480224.js"></script>
-        <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/main.js?v=<?php echo strtotime("now"); ?>"></script>
         
         <?php echo (!empty($scripts) ? $scripts : '');		?>
 		
