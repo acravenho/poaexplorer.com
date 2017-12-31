@@ -17,7 +17,7 @@ class Address extends CI_Controller {
 		$data['transactions'] = $this->Api_model->get_transactions_by_address();
 		$data['contract']     = $this->Api_model->is_contract($data['address']);
 		
-		$data['scripts'] = '<script>addressBalance("'.$data["address"].'");  transactionCount("'.$data["address"].'"); '.($data['contract'] == 1 ? 'getContractCode("'.$data['address'].'");' : '').' </script>';
+		$data['scripts'] = '<script>addressBalance("'.$data["address"].'");  transactionCount("'.$data["address"].'"); '.($data['contract'] == 1 ? 'getContractCode("'.$data['address'].'");' : '').' $("#myTabs a").click(function (e) {e.preventDefault();$(this).tab("show");});</script>';
 		$data['title'] = 'POA Network Explorer - '.$data['address'] ;
 		$data['main'] = 'search/address';
 		$this->load->view('template/file', $data);

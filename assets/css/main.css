@@ -26,10 +26,36 @@ main, footer {
 
 .navbar-brand {
 	margin-right: 4rem;
+	height: 65px;
 }
 
 .navbar-expand-md .navbar-nav .nav-link {
 	margin-right: 24px;
+}
+
+.navbar-nav > li> a {
+	padding-top: 22px;
+	padding-bottom: 22px;
+	color: #fff;
+}
+
+.nav>li>a:hover, .nav>li>a:focus {
+	background: #622c99;
+	text-decoration: none;
+	color: #ccc;
+}
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+	background-color: #622c99;
+	border: none;
+	color:#ccc;
+}
+
+.form-inline  {
+	margin-top: 13px;
+}
+.form-inline input {
+	width: 200px;
 }
 
 .bg-dark {
@@ -170,7 +196,7 @@ a {
 }
 .dropdown-menu {
   position: absolute;
-  top: 130%;
+  top: 102%;
   left: 0;
   z-index: 1000;
   display: none;
@@ -483,8 +509,12 @@ a {
 }
 
 .contract_code {
-	margin-top: 50px;
+	margin-top: 10px;
+	margin-bottom:10px;
 }
+
+.navbar-toggle { margin-top: 13px; border: 1px solid #fff; }
+.navbar-toggle .icon-bar{ background-color: #fff;}
 
 .highlight {
     padding: 9px 14px;
@@ -508,7 +538,7 @@ a {
 }
 
 pre {
-	height: 200px;
+	max-height: 200px;
     display: block;
     padding: 9.5px;
     margin: 0 0 10px;
