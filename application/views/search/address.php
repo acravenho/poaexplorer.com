@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<h2>Transaction History</h2>
-		<p class="lead">Address: <?php echo $this->uri->segment(3); ?></p>
+		<p class="lead"><?php echo ($contract == 1 ? '<i class="fa fa-file-text-o"></i> Contract ' : ''); ?> Address: <?php echo $this->uri->segment(3); ?></p>
 		<hr />
 	</div>
 </div>
@@ -60,14 +60,14 @@
 					echo '<tbody>';
 					foreach($transactions as $t) {
 						echo '<tr>';
-							echo '<td><a href="/blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
-							echo '<td><a href="/txid/search/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
+							echo '<td><a href="'.base_url().'blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
+							echo '<td><a href="'.base_url().'txid/search/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
 							echo '<td>'.($t->time > 0 ? _ago($t->time) : '-').'</td>';
-							echo '<td>'.($t->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' '.($t->from == $this->uri->segment(3) ? substr($t->from, 0, 21).'...' : '<a href="/address/search/'.$t->from.'">'.substr($t->from, 0, 21).'....</a>').'</td>';
+							echo '<td>'.($t->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' '.($t->from == $this->uri->segment(3) ? substr($t->from, 0, 21).'...' : '<a href="'.base_url().'address/search/'.$t->from.'">'.substr($t->from, 0, 21).'....</a>').'</td>';
 							
 							echo '<td>'.($t->from == $this->uri->segment(3) ? '<span class="label label-warning">&nbsp;OUT&nbsp;</span>' : '<span class="label label-success">&nbsp;IN&nbsp;</span>').'</td>';
 							
-							echo '<td>'.($t->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' '.($t->to == $this->uri->segment(3) ? substr($t->to, 0, 21).'...' : '<a href="/address/search/'.$t->to.'">'.substr($t->to, 0, 21).'....</a>').'</td>';
+							echo '<td>'.($t->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' '.($t->to == $this->uri->segment(3) ? substr($t->to, 0, 21).'...' : '<a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'....</a>').'</td>';
 							echo '<td>'.$t->transactionValue.'</td>';
 						echo '</tr>';
 					}
@@ -84,7 +84,8 @@
 			{
 				echo '<div class="tab-pane" role="tabpanel" id="contractcode" aria-labelledby="contractcode-tab"> ';
 				echo '<div class="contract_code">';
-				echo '<p class="lead">Contract Creation Code</p>';
+				echo '<br />';
+				echo '<p><i class="fa fa-cogs"></i> Contract Creation Code</p>';
 				echo '<hr />';
 				echo '<figure class="highlight contractCode">';
 				echo '<pre>';

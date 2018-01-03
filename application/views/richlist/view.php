@@ -20,7 +20,7 @@
 						foreach($rich as $r) {
 							echo '<tr>';
 								echo '<td>'.$i.'</td>';
-								echo '<td><a href="/address/search/'.$r->wallet.'">'.$r->wallet.'</a></td>';
+								echo '<td>'.($r->contract == 1 ? '<i class="fa fa-file-text-o"></i>' : '').' <a href="'.base_url().'/address/search/'.$r->wallet.'">'.$r->wallet.'</a></td>';
 								echo '<td>'.number_format($r->balance).'</td>';
 								echo '<td>$'.number_format($r->balance * .00023 * $price).'</td>';
 							echo '</tr>';

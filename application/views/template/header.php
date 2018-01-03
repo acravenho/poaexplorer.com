@@ -52,11 +52,29 @@
 		          </ul>
 		        </li>
 		      </ul>
+		      
 		      <ul class="nav navbar-nav navbar-right">
-		        <form class="form-inline my-2 my-lg-0" method="post" action="<?php echo base_url(); ?>search">
-	          <input class="form-control mr-sm-2" style="width:275px;" type="text" placeholder="Search Address / TX / Block" aria-label="Search" name="hash">
-	          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-	        </form>
+			      <li class="nav-item">
+			  		<a target="_blank" class="header_icon" href="https://github.com/acravenho/poaexplorer.com" title="POA Explorer Github"><i class="fa fa-github"></i></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<a target="_blank" class="header_icon" href="https://github.com/poanetwork" title="POA Network Github"><i class="fa fa-github-alt"></i></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<a target="_blank" class="header_icon" href="https://medium.com/@poanetwork" title="Official POA Medium"><i class="fa fa-medium"></i></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<a target="_blank" class="header_icon" href="https://twitter.com/poanetwork" title="Official POA Twitter"><i class="fa fa-twitter"></i></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<a target="_blank" class="header_icon" href="https://t.me/joinchat/FlX0FD_ndCsB4_n60sCu2w" title="Official POA Telegram"><i class="fa fa-telegram"></i></a>
+			  	</li>
+			  	<li>
+		        	<form class="form-inline my-2 my-lg-0" method="post" action="<?php echo base_url(); ?>search">
+						<input class="form-control mr-sm-2" style="width:275px;" type="text" placeholder="Search Address / TX / Block" aria-label="Search" name="hash">
+						<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+		    		</form>
+			  	</li>
 		      </ul>
 		    </div>
 		  </div>
