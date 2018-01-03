@@ -19,6 +19,9 @@
     </head>
     <body>
 	    
+	    <?php $active = $this->uri->segment(1); ?>
+	    
+	    
 	    
 	    <nav class="navbar bg-dark">
 		  <div class="container-fluid">
@@ -32,11 +35,11 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="/">Home</a></li>
+		        <li class="active"><a class="<?php echo (empty($active) ? 'active' : ''); ?>" href="/">Home</a></li>
 		        
-		        <li><a href="<?php echo base_url(); ?>blocks">Blocks</a></li>
-		        <li><a href="<?php echo base_url(); ?>transactions">Transactions</a></li>
-		        <li><a href="<?php echo base_url(); ?>richlist">Rich List</a></li>
+		        <li><a class="<?php echo ($active == 'blocks' ? 'active' : ''); ?>" href="<?php echo base_url(); ?>blocks">Blocks</a></li>
+		        <li><a class="<?php echo ($active == 'transactions' ? 'active' : ''); ?>" href="<?php echo base_url(); ?>transactions">Transactions</a></li>
+		        <li><a class="<?php echo ($active == 'richlist' ? 'active' : ''); ?>" href="<?php echo base_url(); ?>richlist">Rich List</a></li>
 				<li class="dropdown">
 		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tools <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
@@ -51,7 +54,7 @@
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		        <form class="form-inline my-2 my-lg-0" method="post" action="<?php echo base_url(); ?>search">
-	          <input class="form-control mr-sm-2" type="text" placeholder="Search Address / TX / Block" aria-label="Search" name="hash">
+	          <input class="form-control mr-sm-2" style="width:275px;" type="text" placeholder="Search Address / TX / Block" aria-label="Search" name="hash">
 	          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 	        </form>
 		      </ul>

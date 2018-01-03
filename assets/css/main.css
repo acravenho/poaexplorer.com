@@ -39,10 +39,12 @@ main, footer {
 	color: #fff;
 }
 
-.nav>li>a:hover, .nav>li>a:focus {
+
+
+.nav>li>a:hover, .nav>li>a:focus, .nav>li>a.active {
 	background: #622c99;
 	text-decoration: none;
-	color: #ccc;
+	background: rgba(0,0,0,.1);
 }
 
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
@@ -207,7 +209,7 @@ a {
   font-size: 14px;
   text-align: left;
   list-style: none;
-  background-color: #622c99;
+  background: rgba(98,44,153,.95);
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
   border: 1px solid #ccc;
