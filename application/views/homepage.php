@@ -30,7 +30,7 @@
 			<table class="table table-striped">
 				<tr><th>Block Height:</th><td id="blockHeight"></td></tr>
 				<tr><th>Transactions:</th><td id="transactionCount"></td></tr>
-				<tr><th>Author:</th><td id="author"></td></tr>
+				<tr><th>Validator:</th><td id="author"></td></tr>
 				<tr><th>Size:</th><td id="size"></td></tr>
 			</table>
 			</figure>
