@@ -6,7 +6,7 @@
 		 
 		 <div class="container">
 			 <hr />
-	        <p>&copy; <?php echo date("Y", strtotime("now")); ?> POAExplorer.com.  Donations: 0x9A04B5c65870cd7bB35556DEB854556e6a7A65F8</p>
+	        <p>&copy; <?php echo date("Y", strtotime("now")); ?> POAExplorer.com.</p>
 		 </div>
 	 </div>
  </footer>
