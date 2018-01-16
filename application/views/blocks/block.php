@@ -7,7 +7,7 @@
 			<table class="table">
 				<tr><th>Block:</th><td id="blockHeight"><?php echo $this->uri->segment(3); ?></td></tr>
 				<tr><th>Transactions:</th><td id="transactionCount"></td></tr>
-				<tr><th>Author:</th><td id="author"></td></tr>
+				<tr><th>Validator:</th><td id="author"></td></tr>
 				<tr><th>Block Hash:</th><td id="blockHash"></td></tr>
 				<tr><th>Size:</th><td id="size"></td></tr>
 				
