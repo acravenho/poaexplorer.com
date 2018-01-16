@@ -67,6 +67,36 @@ main, footer {
 	background-color: #622c99!important;
 }
 
+.network-health .pull-left, .network-health .pull-right {
+	width: 50%;
+}
+
+.network-health .pull-left {
+	color: #622c99;
+	font-size: 48px;
+	padding-left: 15px;
+	padding-top: 5px;
+	height: 80px;
+}
+
+.network-health .pull-right {
+	text-align: left;
+	padding-right: 20px;
+	padding-top: 14px;
+	height: 80px;
+}
+
+.network-label {
+	color: #676f8a;
+    font-size: 10px;
+}
+
+.network-value {
+	color: #5653a1;
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .btn-outline-primary {
     color: #ffffff;
     background-color: transparent;

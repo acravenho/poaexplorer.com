@@ -69,9 +69,9 @@
 	        
         }
         
-        public function get_trans() {
+        public function get_trans($limit = 100) {
 	        $this->db->order_by('tid', 'DESC');
-	        $this->db->limit(100);
+	        $this->db->limit($limit);
 	        
 	        $sql = $this->db->get('transactions');
 	        if($sql->num_rows() > 0) {
@@ -82,6 +82,19 @@
 			        $results[] = $row;
 		        }
 		        return $results;
+	        } else {
+		        return false;
+	        }
+        }
+        
+        public function get_main_blocks($limit = 5)
+        {
+	        $this->db->order_by('id', 'DESC');
+	        $this->db->limit($limit);
+	        
+	        $sql = $this->db->get('blocks');
+	        if($sql->num_rows() > 0) {
+		        return $sql->result();
 	        } else {
 		        return false;
 	        }
