@@ -25,14 +25,15 @@
 		$block = $poa->eth_getBlockByNumber($blockInt);
 		
 		
-		
-		$author = $block->author;
+		$timestamp  = decode_hex($block->timestamp);
+		$author     = $block->author;
 		$difficulty = $block->difficulty;
 		$gasUsed    = $block->gasUsed;
 		$blockHash  = $block->hash;
 		$size       = $block->size;
 		$totalDifficulty = $block->totalDifficulty;
 		$transactions    = $block->transactions;
+		$transactionsCount = count($transactions);
 		
 		if(!empty($transactions)) {
 			for($i = 0; $i < count($transactions); $i++) {
@@ -68,7 +69,7 @@
 			}
 		}
 		
-		$sqlint = "INSERT INTO blocks (blocknum) VALUES ('".$blockInt."')";
+		$sqlint = "INSERT INTO blocks (blocknum, timestamp, validator, transactions) VALUES ('".$blockInt."', '".$timestamp."', '".$author."', '".$transactionCount."')";
 		$link->query($sqlint);
 	}
 	
