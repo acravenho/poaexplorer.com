@@ -169,12 +169,17 @@
 			 $('#blockHash').html(blockHash);
 			 $('#size').html(size + ' bytes');
 			 
-			 var newBlock = '<tr><td><a href="/blocks/block/' + block + '">' + block + '</a></td><td>' + transactionCount + '</td><td><a href="/address/search/' + author + '">'+author.substring(0,21)+'...</a></td></tr>';
+			 var newBlock = '<tr><td class="td-block"><a href="/blocks/block/' + block + '">' + block + '</a></td><td>' + transactionCount + '</td><td><a href="/address/search/' + author + '">'+author.substring(0,21)+'...</a></td></tr>';
 			 
-			 $('#blockBlocks tbody tr:first').before(newBlock);
-			 $('#blockBlocks tbody tr:first').hide().fadeIn('slow');
+			 var tdblock = $('#blockBlocks tbody tr:first .td-block').text();
 			 
-			 $('#blockBlocks tbody tr:last').remove();
+			 if(block != tdblock)
+			 {
+				 $('#blockBlocks tbody tr:first').before(newBlock);
+				 $('#blockBlocks tbody tr:first').hide().fadeIn('slow');
+				 
+				 $('#blockBlocks tbody tr:last').remove();
+			}
 			 
 			 
 			 if(transactionCount > 0) {
