@@ -165,6 +165,7 @@
         
         public function get_total_balances() {
 	        $this->db->select('SUM(balance) AS totalBalance', FALSE);
+	        $this->db->where('exclude', 0);
 	        $sql = $this->db->get('wallets');
 	        if($sql->num_rows() > 0) {
 		        return $sql->row();
