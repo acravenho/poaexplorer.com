@@ -108,6 +108,16 @@
 	        }
         }
         
+        public function contract_creation($address)
+        {
+	        $sql = $this->db->get_where('transactions', array('creates' => $address));
+	        if($sql->num_rows() > 0)
+	        {
+		        return $sql->row();
+	        }
+	        return false;
+        }
+        
         public function get_last_block_found() {
 	        $this->db->order_by('blocknum', 'DESC');
 	        $this->db->limit(1);
@@ -137,6 +147,7 @@
 	        $address = $this->uri->segment(3);
 	        $this->db->where('to', $address);
 	        $this->db->or_where('from', $address);
+	        $this->db->or_where('creates', $address);
 	        $this->db->order_by('blockNumber', 'DESC');
 	        $sql = $this->db->get('transactions');
 	        if($sql->num_rows() > 0) {

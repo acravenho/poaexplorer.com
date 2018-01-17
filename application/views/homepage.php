@@ -106,7 +106,7 @@
 			</div>
 			<table id="blockTransactions" class="table table-striped">
 				<thead>
-					<tr><th>TXID</th><th>To</th><th>From</th><th>Value</th></tr>
+					<tr><th>TXID</th><th>From</th><th>To</th><th>Value</th></tr>
 				</thead>
 				<tbody>
 					<?php
@@ -116,8 +116,20 @@
 							{
 								echo '<tr>';
 									echo '<td><a href="'.base_url().'txid/search/'.$tx->txid.'">'.substr($tx->txid, 0, 16).'...</a></td>';
-									echo '<td>'.($tx->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$tx->to.'">'.substr($tx->to, 0, 16).'....</a></td>';
+									
 									echo '<td>'.($tx->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$tx->from.'">'.substr($tx->from, 0, 16).'....</a></td>';
+									
+									if(empty($tx->to))
+									{
+										echo '<td><i class="fa fa-file-text" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract Creation"></i> <a href="'.base_url().'txid/search/'.$tx->txid.'">Contract Creation</a></td>';
+									}
+									else
+									{
+										echo '<td>'.($tx->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$tx->to.'">'.substr($tx->to, 0, 16).'....</a></td>';
+									}
+									
+									
+									
 									echo '<td>'.$tx->transactionValue.'</td>';
 								echo '</tr>';
 							}	

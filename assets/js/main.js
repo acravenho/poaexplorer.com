@@ -59,9 +59,19 @@
     
     function getTransaction(hash) {
 	    var transaction = poa.eth.getTransaction(hash);
+	    
+	    var to = transaction.to;
+	    if(to == null)
+	    {
+		    $('#trans_to').html('[Contract <a href="/address/search/'+transaction.creates+'">'+transaction.creates+'</a>. Created] <span style="color:green;"><i class="fa fa-check-circle-o"></i></span>');
+	    }
+	    else
+	    {
+		    $('#trans_to').html('<a href="/address/search/'+transaction.to+'">'+transaction.to+'</a>');
+	    }
+	    
 	    $('#trans_hash').html(transaction.blockHash);
 	    $('#trans_blockNumber').html(transaction.blockNumber);
-	    $('#trans_to').html('<a href="/address/search/'+transaction.to+'">'+transaction.to+'</a>');
 	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
 	    var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
 	    $('#trans_value').text(transactionValue + ' POA');
@@ -171,10 +181,21 @@
 				 for(i=0; i<transactionCount; i++) {
 					 var transaction = poa.eth.getTransaction(transactions[i]);
 					 var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
-					 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td>'+transactionValue+'</td></tr>';
+					 
+					 if(transaction.to == null)
+				     {
+					    var tostring = '<i class="fa fa-file-text"></i> <a href="/txid/search/'+transactions[i]+'">Contract Creation</a>';
+				     }
+				     else
+				     {
+					    var tostring = '<a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a>';
+				     }
+					 
+					 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td>'+tostring+'</td><td>'+transactionValue+'</td></tr>';
 					 $('#blockTransactions tbody tr:first').before(string);
 					 $('#blockTransactions tbody tr:first').hide().fadeIn('slow');
-					 $('#blockTransactions tbody tr:last').remove();				 }
+					 $('#blockTransactions tbody tr:last').remove();				 
+				}
 			 } 
      
         });

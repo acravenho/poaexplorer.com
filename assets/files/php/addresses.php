@@ -6,6 +6,8 @@
 	$res = $link->query($sql);
 	if($res->num_rows > 0) {
 		while($row = mysqli_fetch_assoc($res)) {
+			
+			
          	if(check_wallet($row['to']) == true) {
 	         	insert_wallet($row['to']);
          	}
@@ -13,6 +15,14 @@
          	if(check_wallet($row['from']) == true) {
 	         	insert_wallet($row['from']);
          	}
+         	
+         	if(!empty($row['creates']))
+         	{
+	         	if(check_wallet($row['creates']) == true) {
+		         	insert_wallet($row['creates']);
+	         	} 
+	         }
+         	
          	
        	}
 	}

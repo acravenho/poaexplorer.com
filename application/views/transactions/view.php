@@ -6,14 +6,26 @@
 		<?php
 			if(!empty($transactions)) {
 				echo '<table class="table table-striped">';
-					echo '<tr><th>Block</th><th>Time</th><th>TXID</th><th>To</th><th>From</th><th>Value</th></tr>';
+					echo '<tr><th>Block</th><th>Time</th><th>TXID</th><th>From</th><th>To</th><th>Value</th></tr>';
 					foreach($transactions as $t) {
 						echo '<tr>';
 							echo '<td><a href="'.base_url().'blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
 							echo '<td>'.(!empty($t->time) ? _ago($t->time). ' ago' : '-').'</td>';
 							echo '<td><a href="'.base_url().'txid/search/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
-							echo '<td>'.($t->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'...</a></td>';
 							echo '<td>'.($t->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').'<a href="'.base_url().'address/search/'.$t->from.'">'.substr($t->from, 0, 21).'...</a></td>';
+							
+							
+							if(empty($t->to))
+							{
+								echo '<td><i class="fa fa-file-text" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract Creation"></i> <a href="'.base_url().'txid/search/'.$t->txid.'">Contract Creation</a></td>';
+							}
+							else
+							{
+								echo '<td>'.($t->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'...</a></td>';
+							}
+							
+							
+
 							echo '<td>'.$t->transactionValue.'</td>';
 						echo '</tr>';
 					}

@@ -21,11 +21,30 @@
 			$price = $ethprice[0]->price_usd;
 		?>
 		
-		<figure class="figure">
-			<pre>
+		<?php
+			if($contract == 1)
+			{
+		?>
+		
+		<ul class="list-group">
+			<li class="list-group-item d-flex justify-content-between align-items-center">Contract Creator:
+				<?php
+					if(!empty($contract_creation))
+					{
+						echo '<a href="'.base_url().'address/search/'.$contract_creation->from.'">'.substr($contract_creation->from, 0, 16).'...</a> at txn <a href="'.base_url().'txid/search/'.$contract_creation->txid.'">'.substr($contract_creation->txid, 0, 16).'...</a>';
+					} 
+					else
+					{
+						echo 'Unknown';
+					}
+				?>
+			</li>
+		</ul>
+		
+		<?php } ?>
+		
 				<p class="small">The POA Value was calculated using the ICO purchase price of .00023 ETH per POA token. The current price of Ethereum is $<span class="eth_price"><?php echo $price; ?></span>.</p>
-			</pre>
-		</figure>
+			
 	</div>
 	
 </div>
@@ -67,7 +86,16 @@
 							
 							echo '<td>'.($t->from == $this->uri->segment(3) ? '<span class="label label-warning">&nbsp;OUT&nbsp;</span>' : '<span class="label label-success">&nbsp;IN&nbsp;</span>').'</td>';
 							
-							echo '<td>'.($t->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' '.($t->to == $this->uri->segment(3) ? substr($t->to, 0, 21).'...' : '<a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'....</a>').'</td>';
+							if(empty($t->to))
+							{
+								echo '<td><i class="fa fa-file-text"></i> <a href="'.base_url().'address/search/'.$t->creates.'">Contract Creation</a></td>';
+							}
+							else
+							{
+								echo '<td>'.($t->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' '.($t->to == $this->uri->segment(3) ? substr($t->to, 0, 21).'...' : '<a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'....</a>').'</td>';
+							}
+							
+							
 							echo '<td>'.$t->transactionValue.'</td>';
 						echo '</tr>';
 					}
