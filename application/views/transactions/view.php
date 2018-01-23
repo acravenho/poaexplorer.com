@@ -26,7 +26,7 @@
 							
 							
 
-							echo '<td>'.$t->transactionValue.'</td>';
+							echo '<td style="text-align:right;">'.number_format($t->transactionValue,8).' POA</td>';
 						echo '</tr>';
 					}
 				

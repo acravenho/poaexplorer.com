@@ -115,9 +115,9 @@
 							foreach($transactions as $tx)
 							{
 								echo '<tr>';
-									echo '<td><a href="'.base_url().'txid/search/'.$tx->txid.'">'.substr($tx->txid, 0, 16).'...</a></td>';
+									echo '<td><a href="'.base_url().'txid/search/'.$tx->txid.'">'.substr($tx->txid, 0, 12).'...</a></td>';
 									
-									echo '<td>'.($tx->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$tx->from.'">'.substr($tx->from, 0, 16).'....</a></td>';
+									echo '<td>'.($tx->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$tx->from.'">'.substr($tx->from, 0, 12).'....</a></td>';
 									
 									if(empty($tx->to))
 									{
@@ -125,17 +125,18 @@
 									}
 									else
 									{
-										echo '<td>'.($tx->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$tx->to.'">'.substr($tx->to, 0, 16).'....</a></td>';
+										echo '<td>'.($tx->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$tx->to.'">'.substr($tx->to, 0, 12).'....</a></td>';
 									}
 									
 									
 									
-									echo '<td>'.$tx->transactionValue.'</td>';
+									echo '<td style="text-align:right;">'.number_format($tx->transactionValue,8).'</td>';
 								echo '</tr>';
 							}	
 						}
 					?>
 				</tbody>
 			</table>
+
 		</div>
 	</div>

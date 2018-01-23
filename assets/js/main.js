@@ -74,9 +74,11 @@
 	    $('#trans_blockNumber').html(transaction.blockNumber);
 	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
 	    var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
+	    transactionValue = parseFloat(transactionValue).toFixed(8).toLocaleString();
 	    $('#trans_value').text(transactionValue + ' POA');
+	    var gasprice = poa.fromWei(transaction.gasPrice.toFixed(8), 'ether').toLocaleString();
 	    $('#trans_gas').html(transaction.gas);
-	    $('#trans_gasPrice').text(transaction.gasPrice).toString(10);
+	    $('#trans_gasPrice').text(gasprice + ' POA');
 	    $('#trans_nonce').html(transaction.nonce);
 	 }
 	 
@@ -127,7 +129,8 @@
 			 for(i=0; i<transactionCount; i++) {
 				 var transaction = poa.eth.getTransaction(transactions[i]);
 				 var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
-				 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td>'+transactionValue+' POA</td></tr>';
+				 transactionValue = parseFloat(transactionValue).toFixed(8).toLocaleString();
+				 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td style="text-align:right;">'+transactionValue+' POA</td></tr>';
 				 $('#blockTransactions tbody').append(string);
 			 }
 		 } else {
