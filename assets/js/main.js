@@ -58,6 +58,8 @@
     
     
     function getTransaction(hash) {
+	    
+	    
 	    var transaction = poa.eth.getTransaction(hash);
 	    
 	    var to = transaction.to;
@@ -74,11 +76,17 @@
 	    $('#trans_blockNumber').html(transaction.blockNumber);
 	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
 	    var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
-	    transactionValue = parseFloat(transactionValue).toFixed(8).toLocaleString();
+	    transactionValue = parseFloat(transactionValue).toFixed(9).toLocaleString();
 	    $('#trans_value').text(transactionValue + ' POA');
-	    var gasprice = poa.fromWei(transaction.gasPrice.toFixed(8), 'ether').toLocaleString();
-	    $('#trans_gas').html(transaction.gas);
-	    $('#trans_gasPrice').text(gasprice + ' POA');
+	    var gasprice = poa.fromWei(transaction.gasPrice.toFixed(9), 'ether');
+	    var gasgwei  = poa.fromWei(transaction.gasPrice.toFixed(9), 'gwei');
+	    
+	    var transfee = gasprice * transaction.gas;
+	    
+	    $('#trans_txfee').html(createNumber(transfee));
+	    $('.trans_gwei').html(gasgwei);
+	    $('.trans_gas').html(transaction.gas);
+	    $('.trans_gasPrice').text(gasprice + ' POA');
 	    $('#trans_nonce').html(transaction.nonce);
 	 }
 	 
@@ -129,7 +137,7 @@
 			 for(i=0; i<transactionCount; i++) {
 				 var transaction = poa.eth.getTransaction(transactions[i]);
 				 var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
-				 transactionValue = parseFloat(transactionValue).toFixed(8).toLocaleString();
+				 transactionValue = parseFloat(transactionValue).toFixed(9).toLocaleString();
 				 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td style="text-align:right;">'+transactionValue+' POA</td></tr>';
 				 $('#blockTransactions tbody').append(string);
 			 }
@@ -300,6 +308,13 @@
 		var seconds = "0" + date.getSeconds();
 		var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 		return formattedTime;
+	}
+	
+	
+	function createNumber(value)
+	{
+		var number = Number(value.toFixed(18));
+		return number.toString();
 	}
     
     

@@ -130,7 +130,7 @@
 									
 									
 									
-									echo '<td style="text-align:right;">'.number_format($tx->transactionValue,8).'</td>';
+									echo '<td style="text-align:right;">'.convertFloat($tx->transactionValue).'</td>';
 								echo '</tr>';
 							}	
 						}

@@ -9,9 +9,11 @@
 			<tr><th>From:</th><td id="trans_from"></td></tr>
 			<tr><th>To:</th><td id="trans_to"></td></tr>
 			<tr><th>Value:</th><td id="trans_value"></td></tr>
-			<tr><th>Gas:</th><td id="trans_gas"></td></tr>
-			<tr><th>Gas Price:</th><td id="trans_gasPrice"></td></tr>
+			<tr><th>Gas:</th><td><span class="trans_gas"></span></td></tr>
+			<tr><th>Gas Price:</th><td><span class="trans_gasPrice"></span> (<span class="trans_gwei"></span> GWEI)</td></tr>
+			<tr><th>Actual Tx Cost/Fee:</th><td id="trans_txfee"></td></tr>
 			<tr><th>Nonce:</th><td id="trans_nonce"></td></tr>
+			
 			
 		</table>
 	</div>
