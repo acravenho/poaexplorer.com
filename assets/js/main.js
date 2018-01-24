@@ -73,7 +73,7 @@
 	    }
 	    
 	    $('#trans_hash').html(transaction.blockHash);
-	    $('#trans_blockNumber').html(transaction.blockNumber);
+	    $('#trans_blockNumber').html('<a href="/blocks/block/'+transaction.blockNumber+'">'+transaction.blockNumber+'</a>');
 	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
 	    var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
 	    transactionValue = parseFloat(transactionValue).toFixed(9).toLocaleString();
