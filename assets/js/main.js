@@ -75,8 +75,9 @@
 	    $('#trans_hash').html(transaction.blockHash);
 	    $('#trans_blockNumber').html('<a href="/blocks/block/'+transaction.blockNumber+'">'+transaction.blockNumber+'</a>');
 	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
-	    var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
-	    transactionValue = parseFloat(transactionValue).toFixed(9).toLocaleString();
+	    var transactionValue = poa.fromWei(transaction.value, 'ether');
+	    transactionValue = Number(transactionValue).toFixed(18);
+	    transactionValue = fixNumber(transactionValue);
 	    $('#trans_value').text(transactionValue + ' POA');
 	    var gasprice = poa.fromWei(transaction.gasPrice.toFixed(9), 'ether');
 	    var gasgwei  = poa.fromWei(transaction.gasPrice.toFixed(9), 'gwei');
@@ -137,8 +138,8 @@
 			 for(i=0; i<transactionCount; i++) {
 				 var transaction = poa.eth.getTransaction(transactions[i]);
 				 var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
-				 transactionValue = parseFloat(transactionValue).toFixed(9).toLocaleString();
-				 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td style="text-align:right;">'+transactionValue+' POA</td></tr>';
+				 transactionValue = parseFloat(transactionValue).toFixed(18).toLocaleString();
+				 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td style="text-align:right;">'+fixNumber(transactionValue)+' POA</td></tr>';
 				 $('#blockTransactions tbody').append(string);
 			 }
 		 } else {
@@ -197,6 +198,8 @@
 				 for(i=0; i<transactionCount; i++) {
 					 var transaction = poa.eth.getTransaction(transactions[i]);
 					 var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
+					 transactionValue = transactionValue.toFixed(18);
+					 transactionValue = fixNumber(transactionValue);
 					 
 					 if(transaction.to == null)
 				     {
@@ -315,6 +318,11 @@
 	{
 		var number = Number(value.toFixed(18));
 		return number.toString();
+	}
+	
+	function fixNumber(value)
+	{
+		return value.replace(/\.?0+$/,"");
 	}
     
     
