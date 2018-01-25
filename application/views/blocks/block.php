@@ -20,7 +20,7 @@
 <div class="row" style="margin-top:35px;">
 	<div class="col-md-12">
 		<h3>Transactions for Block #<?php echo $this->uri->segment(3); ?></h3>
-		<table id="blockTransactions" class="table">
+		<table id="blockTransactions" class="table table-striped transaction_table">
 			<thead>
 				<tr><td>TXID</td><td>To</td><td>From</td><td>Value</td></tr>
 			</thead>

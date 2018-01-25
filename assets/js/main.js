@@ -75,8 +75,10 @@
 	    $('#trans_hash').html(transaction.blockHash);
 	    $('#trans_blockNumber').html('<a href="/blocks/block/'+transaction.blockNumber+'">'+transaction.blockNumber+'</a>');
 	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
+	    console.log(transaction.value);
 	    var transactionValue = poa.fromWei(transaction.value, 'ether');
-	    transactionValue = Number(transactionValue).toFixed(18);
+	    transactionValue = Number(transactionValue);
+	    transactionValue = transactionValue.toFixed(18);
 	    transactionValue = fixNumber(transactionValue);
 	    $('#trans_value').text(transactionValue + ' POA');
 	    var gasprice = poa.fromWei(transaction.gasPrice.toFixed(9), 'ether');
@@ -138,7 +140,7 @@
 			 for(i=0; i<transactionCount; i++) {
 				 var transaction = poa.eth.getTransaction(transactions[i]);
 				 var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
-				 transactionValue = parseFloat(transactionValue).toFixed(18).toLocaleString();
+				 transactionValue = parseFloat(transactionValue).toFixed(10).toLocaleString();
 				 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td style="text-align:right;">'+fixNumber(transactionValue)+' POA</td></tr>';
 				 $('#blockTransactions tbody').append(string);
 			 }
@@ -198,7 +200,7 @@
 				 for(i=0; i<transactionCount; i++) {
 					 var transaction = poa.eth.getTransaction(transactions[i]);
 					 var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
-					 transactionValue = transactionValue.toFixed(18);
+					 transactionValue = transactionValue.toFixed(10);
 					 transactionValue = fixNumber(transactionValue);
 					 
 					 if(transaction.to == null)
