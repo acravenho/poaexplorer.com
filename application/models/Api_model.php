@@ -69,9 +69,9 @@
 	        
         }
         
-        public function get_trans($limit = 100) {
+        public function get_trans($limit = 100, $start_index = 0) {
 	        $this->db->order_by('tid', 'DESC');
-	        $this->db->limit($limit);
+	        $this->db->limit($limit, $start_index);
 	        
 	        $sql = $this->db->get('transactions');
 	        if($sql->num_rows() > 0) {
@@ -197,6 +197,13 @@
         
         public function get_nodes() {
 	        $this->db->group_by('author');
+        }
+        
+        public function get_total_transactions()
+        {
+	        $this->db->select('tid');
+	        $q = $this->db->get('transactions');
+	        return $q->num_rows();
         }
 
 }

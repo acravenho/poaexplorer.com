@@ -77,8 +77,9 @@
 	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
 	    console.log(transaction.value);
 	    var transactionValue = poa.fromWei(transaction.value, 'ether');
-	    transactionValue = Number(transactionValue);
 	    transactionValue = transactionValue.toFixed(18);
+	    //transactionValue = Number(transactionValue);
+	    
 	    transactionValue = fixNumber(transactionValue);
 	    $('#trans_value').text(transactionValue + ' POA');
 	    var gasprice = poa.fromWei(transaction.gasPrice.toFixed(9), 'ether');
@@ -200,7 +201,7 @@
 				 for(i=0; i<transactionCount; i++) {
 					 var transaction = poa.eth.getTransaction(transactions[i]);
 					 var transactionValue = poa.fromWei(transaction.value, 'ether').toLocaleString();
-					 transactionValue = transactionValue.toFixed(10);
+					 transactionValue = transactionValue.toFixed(18);
 					 transactionValue = fixNumber(transactionValue);
 					 
 					 if(transaction.to == null)

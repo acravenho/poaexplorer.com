@@ -4,6 +4,7 @@
 		<h2>Recent Transactions</h2>
 		<hr>
 		<?php
+			echo $links;
 			if(!empty($transactions)) {
 				echo '<table class="table table-striped transaction_table">';
 					echo '<tr><th>Block</th><th>Time</th><th>TXID</th><th>From</th><th></th><th>To</th><th>Value</th></tr>';
@@ -33,6 +34,7 @@
 					}
 				
 				echo '</table>';
+				echo $links;
 			} else {
 				echo '<p class="lead">Sorry, no transactions could be found!</p>';
 			}
