@@ -10,7 +10,7 @@
 	<div class="col-md-6">
 		<ul class="list-group">
 			<li class="list-group-item d-flex justify-content-between align-items-center">POA Balance: <span class="badge badge-primary badge-pill" id="address_balance"></span></li>
-			<li class="list-group-item d-flex justify-content-between align-items-center">Transaction Count: <span class="badge badge-primary badge-pill" id="address_count"><?php echo (!empty($transactions) ? count($transactions) : 0 ); ?></span></li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">Transaction Count: <span class="badge badge-primary badge-pill" id="address_count"><?php echo (!empty($transactions) ? $total_transactions : 0 ); ?></span></li>
 			<li class="list-group-item d-flex justify-content-between align-items-center">POA Value: <span class="badge badge-primary badge-pill" id="address_value">Coming soon.</span></li>
 			
 		</ul>
@@ -71,7 +71,14 @@
 			echo '<div class="tab-pane active in" role="tabpanel" id="transactions" aria-labelledby="transactions-tab"> ';
 			if(!empty($transactions)) {
 				echo '<br />';
-				echo '<p><i class="fa fa-sort-amount-desc"></i> Showing a total of '.count($transactions).' transactions.</p>';
+				echo'<div class="row">';
+				echo '<div class="col-md-6">';
+				echo '<p><i class="fa fa-sort-amount-desc"></i> Showing '.count($transactions).' out of a total '.$total_transactions.' transactions.</p>';
+				echo '</div>';
+				echo '<div class="col-md-6">';
+				echo $links;
+				echo '</div>';
+				echo '</div>';
 				echo '<table class="table table-striped transaction_table">';
 					echo '<thead>';
 					echo '<tr><th>Block</th><th>TX Hash</th><th>Age</th><th>From</th><th></th><th>To</th><th>Value</th></tr>';
@@ -101,6 +108,7 @@
 					}
 					echo '</tbody>';
 				echo '</table>';
+				echo $links;
 			} else {
 				echo '<p class="lead">Sorry, no transactions could be found!</p>';
 			}

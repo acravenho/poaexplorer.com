@@ -143,8 +143,10 @@
         }
         
         
-        public function get_transactions_by_address() {
+        public function get_transactions_by_address($limit = 20, $start = 0) {
+	        
 	        $address = $this->uri->segment(3);
+	        $this->db->limit($limit, $start);
 	        $this->db->where('to', $address);
 	        $this->db->or_where('from', $address);
 	        $this->db->or_where('creates', $address);
@@ -199,11 +201,23 @@
 	        $this->db->group_by('author');
         }
         
-        public function get_total_transactions()
+        public function get_total_transactions($address = NULL)
         {
-	        $this->db->select('tid');
-	        $q = $this->db->get('transactions');
-	        return $q->num_rows();
+	        if($address == NULL)
+	        {
+		        $this->db->select('tid');
+		        $q = $this->db->get('transactions');
+		        return $q->num_rows();
+		    }
+		    else
+		    {
+			    $this->db->select('tid');
+			    $this->db->where('to', $address);
+				$this->db->or_where('from', $address);
+				$this->db->or_where('creates', $address);
+				$sql = $this->db->get('transactions');
+				return $sql->num_rows();
+		    }
         }
 
 }
