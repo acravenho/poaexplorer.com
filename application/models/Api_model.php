@@ -174,9 +174,9 @@
 	        }
         }
         
-        public function get_richlist() {
+        public function get_richlist($limit = 20, $start = 0) {
 	        $this->db->order_by('balance', 'DESC');
-	        $this->db->limit(100);
+	        $this->db->limit($limit, $start);
 	        $sql = $this->db->get('wallets');
 	        if($sql->num_rows() > 0) {
 		        return $sql->result();
@@ -200,6 +200,26 @@
         public function get_nodes() {
 	        $this->db->group_by('author');
         }
+        
+        public function get_total_wallet_balances()
+        {
+	        $this->db->select_sum('balance');
+	        $this->db->where('balance >', 0);
+	        $sql = $this->db->get('wallets');
+	        $row = $sql->row();
+	        
+	        return $row->balance;
+        }
+        
+        
+        public function get_total_accounts()
+        {
+	        $this->db->select('wid');
+	        $this->db->where('balance >', 0);
+	        $sql = $this->db->get('wallets');
+	        return $sql->num_rows();
+	        
+	    }
         
         public function get_total_transactions($address = NULL)
         {

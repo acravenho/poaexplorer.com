@@ -39,7 +39,7 @@
 		        
 		        <li><a class="<?php echo ($active == 'blocks' ? 'active' : ''); ?>" href="<?php echo base_url(); ?>blocks">Blocks</a></li>
 		        <li><a class="<?php echo ($active == 'transactions' ? 'active' : ''); ?>" href="<?php echo base_url(); ?>transactions">Transactions</a></li>
-		        <li><a class="<?php echo ($active == 'richlist' ? 'active' : ''); ?>" href="<?php echo base_url(); ?>richlist">Rich List</a></li>
+		        <li><a class="<?php echo ($active == 'accounts' ? 'active' : ''); ?>" href="<?php echo base_url(); ?>accounts">Accounts</a></li>
 				<li class="dropdown">
 		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tools <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
