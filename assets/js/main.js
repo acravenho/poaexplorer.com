@@ -92,6 +92,7 @@
 	    $('.trans_gas').html(transaction.gas);
 	    $('.trans_gasPrice').text(gasprice + ' POA');
 	    $('#trans_nonce').html(transaction.nonce);
+	    $('#trans_input .highlight pre').html(transaction.input);
 	 }
 	 
 	 function getStartBlock() {
