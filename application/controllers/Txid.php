@@ -11,6 +11,12 @@ class Txid extends CI_Controller {
 			show_404();
 		} 
 		
+		$first = substr($data['txid'], 0, 2);
+		
+		if($first !== '0x') {
+			redirect(base_url().'/txid/search/0x'.$data['txid']);
+		}
+		
 		$data['scripts'] = '<script>getTransaction("'.$data["txid"].'"); </script>';
 		$data['title'] = 'POA Network Explorer - TXID: '.$data['txid'] ;
 		$data['main'] = 'search/txid';

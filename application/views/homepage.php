@@ -20,7 +20,7 @@
 			
 		
 		
-		<p class="small">The POA Market Capitalization was calculated using the ICO purchase price of .00023 ETH per POA token. The current price of Ethereum is $<span class="eth_price"><?php echo $price; ?></span>.</p>
+		<p class="small">The POA Market Capitalization was calculated using the TGE purchase price of .00023 ETH per POA token. The current price of Ethereum is $<span class="eth_price"><?php echo $price; ?></span>.</p>
 
 			<hr />
 		</div>
