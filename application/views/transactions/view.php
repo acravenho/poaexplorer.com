@@ -29,7 +29,7 @@
 							
 							
 
-							echo '<td style="text-align:right;">'.convertFloat($t->transactionValue).' POA</td>';
+							echo '<td style="text-align:right;">'.fixBigDecimal($t->transactionValue).' POA</td>';
 						echo '</tr>';
 					}
 				

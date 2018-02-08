@@ -69,7 +69,7 @@
 			}
 		}
 		
-		$sqlint = "INSERT INTO blocks (blocknum, timestamp, validator, transactions) VALUES ('".$blockInt."', '".$timestamp."', '".$author."', '".$transactionCount."')";
+		$sqlint = "INSERT INTO blocks (blocknum, timestamp, validator, transactions) VALUES ('".$blockInt."', '".$timestamp."', '".$author."', '".$transactionsCount."')";
 		$link->query($sqlint);
 	}
 	

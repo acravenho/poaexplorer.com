@@ -30,3 +30,11 @@ function convertFloat($floatAsString)
 
     return number_format($norm, -intval(substr($e, 1)));
 }
+
+
+function fixBigDecimal($value)
+{
+	$value = number_format($value,18);
+	return rtrim(rtrim($value,0),".");
+	
+}

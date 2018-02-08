@@ -132,7 +132,7 @@
 									
 									
 									
-									echo '<td style="text-align:right;">'.convertFloat($tx->transactionValue).'</td>';
+									echo '<td style="text-align:right;">'.fixBigDecimal($tx->transactionValue).'</td>';
 								echo '</tr>';
 							}	
 						}
