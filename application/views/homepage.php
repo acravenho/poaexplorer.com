@@ -90,7 +90,7 @@
 								echo '<tr>';
 									echo '<td class="td-block"><a href="'.base_url().'blocks/block/'.$b->blocknum.'">'.$b->blocknum.'</a></td>';
 									echo '<td>'.$b->transactions.'</td>';
-									echo '<td><a href="'.base_url().'address/search/'.$b->validator.'">'.substr($b->validator, 0, 21).'....</a></td>';
+									echo '<td><a href="'.base_url().'validators/address/'.$b->validator.'">'.$b->name.'</a></td>';
 								echo '</tr>';
 							}	
 						}

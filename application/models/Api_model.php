@@ -94,7 +94,14 @@
 	        
 	        $sql = $this->db->get('blocks');
 	        if($sql->num_rows() > 0) {
-		        return $sql->result();
+		        $rows = array();
+		        foreach($sql->result() as $row)
+		        {
+			        $validator = $this->get_validator($row->validator);
+			        $row->name = $validator->name;
+			        $rows[] = $row;
+		        }
+		        return $rows;
 	        } else {
 		        return false;
 	        }
@@ -238,6 +245,43 @@
 				$sql = $this->db->get('transactions');
 				return $sql->num_rows();
 		    }
+        }
+        
+        
+        public function get_total_blocks_validator($address = NULL) 
+        {
+	        if(empty($address)) {
+		        return false;
+	        }
+	        
+	        $this->db->from('blocks');
+	        $this->db->where('validator', $address);
+	        $sql = $this->db->get();
+	        return $sql->num_rows();
+        }
+        
+        public function get_blocks_by_validator($limit = 20, $start = 0) 
+        {
+	        $address = $this->uri->segment(3);
+	        $this->db->order_by('blocknum', 'DESC');
+	        $this->db->limit($limit, $start);
+	        $this->db->where('validator', $address);
+	        $sql = $this->db->get('blocks');
+	        if($sql->num_rows() > 0) {
+		        return $sql->result();
+	        }
+	        return false;
+        }
+        
+        public function get_validator($address = NULL)
+        {
+	        $address = (!empty($address) ? $address : $this->uri->segment(3));
+	        $this->db->where('address', $address);
+	        $sql = $this->db->get('validators');
+	        if($sql->num_rows() > 0) {
+		        return $sql->row();
+	        }
+	        return false;
         }
 
 }

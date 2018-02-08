@@ -131,7 +131,7 @@
 		 
 		 
 		 $('#transactionCount').html(transactionCount);
-		 $('#author').html('<a href="/address/search/'+author+'">'+author+'</a>');
+		 $('#author').html('<a href="/validators/address/'+author+'">'+getValidator(author)+'</a>');
 		 $('#difficulty').text(difficulty);
 		 $('#gasUsed').text(gasUsed);
 		 $('#blockHash').html(blockHash);
@@ -181,11 +181,11 @@
 			 $('#blockHeight').html(block);
 			 $('#gasPrice').html(gasPrice);
 			 $('#transactionCount').html(transactionCount);
-			 $('#author').html('<a href="/address/search/'+author+'">'+author+'</a>');
+			 $('#author').html('<a href="/validators/address/'+author+'">'+author+'</a>');
 			 $('#blockHash').html(blockHash);
 			 $('#size').html(size + ' bytes');
 			 
-			 var newBlock = '<tr><td class="td-block"><a href="/blocks/block/' + block + '">' + block + '</a></td><td>' + transactionCount + '</td><td><a href="/address/search/' + author + '">'+author.substring(0,21)+'...</a></td></tr>';
+			 var newBlock = '<tr><td class="td-block"><a href="/blocks/block/' + block + '">' + block + '</a></td><td>' + transactionCount + '</td><td><a href="/validators/address/' + author + '">'+getValidator(author)+'</a></td></tr>';
 			 
 			 var tdblock = $('#blockBlocks tbody tr:first .td-block').text();
 			 
@@ -306,6 +306,35 @@
 	  };
 	}
 	
+	
+	function getValidator(address)
+	{
+		var add = address.toLowerCase();
+		
+		var addressArray = new Array();
+		addressArray['0xCf260eA317555637C55F70e55dbA8D5ad8414Cb0'] = 'Igor Barinov';
+		addressArray['0x3Ab99ec45f706eE52748F24B1CEA4676d91aF64f'] = 'Roman Storm';
+		addressArray['0x8E6cdFacDAe218Ae312aD24Cb1e8cf34Bb9f6b61'] = 'Jefferson Flowers';
+		addressArray['0x7A6a585dB8cDFa88B9e8403c054ec2e912E9D32E'] = 'John H. LeGassic';
+		addressArray['0x49bbdeBd7f3D39f297135d7Af3831Ce152a99b67'] = 'Jim O\'Regan';
+		addressArray['0x0f1e7c925D502855dCD31DdE4703770A0CF6cDFC'] = 'Rocco Mancini';
+		addressArray['0x8FE38B0349B99C17242d44D5B1b859B0e941DcEd'] = 'Sherina Yang';
+		addressArray['0xDC4765D9DAbF6c6c4908fE97E649Ef1F05Cb6252'] = 'Sviataslau Vishneuski';
+		addressArray['0x3091AEe5Cb7a290da8E05cC4b70dac7715de39A0'] = 'John D. Storey';
+		addressArray['0x6E4F8fc73B93BA5160FADF914603a590D4676494'] = 'Michael Milirud';
+		addressArray['0x18Bea833D503341C529a788c82909337e552a44e'] = 'Lillian Chan';
+		addressArray['0xf1F51e933D6aAd056236E0a45c1cC5b335ca1A75'] = 'Stephen Arsenault';
+		
+		for(var key in addressArray)
+		{
+			if(key.toLowerCase() == add)
+			{
+				return addressArray[key];
+			}
+		}
+
+		
+	}
 	
 	function dateTime(timestamp)
 	{
