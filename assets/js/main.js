@@ -1,6 +1,9 @@
 	var POA = require('web3');
     var poa = new Web3();
-    poa.setProvider(new poa.providers.HttpProvider('https://core.poa.network'));
+    poa.setProvider(new poa.providers.HttpProvider('https://core-trace.poa.network'));
+    
+    $('.peers').html(poa.net.peerCount);
+    $('.parity').html(poa.version.node);
     
     function getNewBlocks() {
 	    $.get('/api/getblocks');
@@ -94,6 +97,47 @@
 	    $('#trans_nonce').html(transaction.nonce);
 	    $('#trans_input .highlight pre').html(transaction.input);
 	 }
+	 
+	 
+	 function get_internal_transactions(hash)
+	 {
+		 poa.currentProvider.sendAsync({
+		  method: "trace_replayTransaction",
+		  params: [hash, ['trace']],
+		  jsonrpc: "2.0",
+		  id: "1"
+		}, function (err, out) {
+			if(!err)
+			{
+				
+				for(var i=0; i<out.result.trace.length; i++) {
+	                console.log(out.result.trace[i]);
+	                var type = out.result.trace[i].type;
+	                
+	                if(type == 'call')
+	                {
+		                var fromt = out.result.trace[i].action.from;
+		                var to    = out.result.trace[i].action.to;
+		                var value = out.result.trace[i].action.value;
+		                var ovalue = poa.fromWei(value, 'ether');
+		            }
+		            else
+		            {
+			            var fromt = out.result.trace[i].action.from;
+		                var to    = out.result.trace[i].result.address;
+		                var value = out.result.trace[i].action.value;
+		                var ovalue = poa.fromWei(value, 'ether');
+		            }
+		            var html = '<tr><td>'+ type +'</td><td><a href="/address/search/'+fromt+'">' + fromt + '</a></td><td><a href="/address/search/'+to+'">' + to + '</a></td><td>' + ovalue + '</td></tr>';
+	                $('#internalTransactions tbody').append(html);
+	            }
+	        } else {
+		        console.log(err);
+	        }
+		 // console.log(out.result.trace);
+		});
+	 }
+	 
 	 
 	 function getStartBlock() {
 		var first = poa.eth.blockNumber;
@@ -324,6 +368,7 @@
 		addressArray['0x6E4F8fc73B93BA5160FADF914603a590D4676494'] = 'Michael Milirud';
 		addressArray['0x18Bea833D503341C529a788c82909337e552a44e'] = 'Lillian Chan';
 		addressArray['0xf1F51e933D6aAd056236E0a45c1cC5b335ca1A75'] = 'Stephen Arsenault';
+		addressArray['0x28E7605a631441870e80A283Aa43Ae4145f82cc3'] = 'Melanie Marsollier';
 		
 		for(var key in addressArray)
 		{
@@ -336,6 +381,7 @@
 		
 	}
 	
+		
 	function dateTime(timestamp)
 	{
 		var date = new Date(timestamp*1000);

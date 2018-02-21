@@ -6,7 +6,7 @@
 		 
 		 <div class="container">
 			 <hr />
-	        <p>&copy; <?php echo date("Y", strtotime("now")); ?> POAExplorer.com.</p>
+	        <p>&copy; <?php echo date("Y", strtotime("now")); ?> POAExplorer.com. - <span class="parity"></span>  - <span class="peers"></span> Peers Connected</p>
 		 </div>
 	 </div>
  </footer>
