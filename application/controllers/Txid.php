@@ -17,7 +17,7 @@ class Txid extends CI_Controller {
 			redirect(base_url().'/txid/search/0x'.$data['txid']);
 		}
 		
-		$data['scripts'] = '<script>getTransaction("'.$data["txid"].'"); </script>';
+		$data['scripts'] = '<script>getTransaction("'.$data["txid"].'"); get_internal_transactions("'.$data['txid'].'"); </script>';
 		$data['title'] = 'POA Network Explorer - TXID: '.$data['txid'] ;
 		$data['main'] = 'search/txid';
 		$this->load->view('template/file', $data);

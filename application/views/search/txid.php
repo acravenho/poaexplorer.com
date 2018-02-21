@@ -19,3 +19,24 @@
 		</table>
 	</div>
 </div>
+
+<div class="row">
+	<div class="col-md-12">
+		<p class="lead">Internal Tranactions</p>
+		<hr />
+		<table class="table table-striped transaction_table" id="internalTransactions">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>From</th>
+					<th>To</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+</div>
+	
