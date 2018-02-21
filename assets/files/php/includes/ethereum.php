@@ -167,6 +167,11 @@ class Ethereum extends JSON_RPC
 		}
 	}
 	
+	function eth_sendTrace($method, $params) 
+	{
+		return $this->ether_request($method, $params);
+	}
+	
 	function eth_call($message, $block)
 	{
 		if(!is_a($message, 'Ethereum_Message'))

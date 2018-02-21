@@ -1,7 +1,7 @@
 <?php
 	require 'includes/database.php';
 	require 'includes/functions.php';
-	$scriptname = 'check addresses';
+	$scriptname = 'check internal addresses';
 	
 	if(checkscript($scriptname) == true) {
 		die();
@@ -9,26 +9,27 @@
 	
 	$poa = new Ethereum('https://core.poa.network', '');
 	
-	$sql = "SELECT * FROM transactions ORDER BY tid DESC LIMIT 20000";
+	$random = rand(0,2);
+	$array  = array('to', 'from', 'address');
+	$rgroup = $array[$random];
+	
+	
+	$sql = "SELECT * FROM internal_transactions GROUP BY `$rgroup`";
 	$res = $link->query($sql);
+	
 	if($res->num_rows > 0) {
 		while($row = mysqli_fetch_assoc($res)) {
 			
-			
-         	if(check_wallet($row['to']) == true) {
-	         	insert_wallet($row['to']);
-         	}
+			if(!empty($row["$rgroup"]))
+			{
+				if(strlen($row["$rgroup"]) == 42)
+				{
+					if(check_wallet($row["$rgroup"]) == true) {
+			         	insert_wallet($row["$rgroup"]);
+		         	}	
+				}
+	        }
          	
-         	if(check_wallet($row['from']) == true) {
-	         	insert_wallet($row['from']);
-         	}
-         	
-         	if(!empty($row['creates']))
-         	{
-	         	if(check_wallet($row['creates']) == true) {
-		         	insert_wallet($row['creates']);
-	         	} 
-	         }
         }
 	}
 	
