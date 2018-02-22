@@ -64,6 +64,9 @@
 	    
 	    
 	    var transaction = poa.eth.getTransaction(hash);
+	    var currentBlock = poa.eth.blockNumber;
+	    console.log(currentBlock);
+	    var confirmations = currentBlock - transaction.blockNumber;
 	    
 	    var to = transaction.to;
 	    if(to == null)
@@ -76,7 +79,7 @@
 	    }
 	    
 	    $('#trans_hash').html(transaction.blockHash);
-	    $('#trans_blockNumber').html('<a href="/blocks/block/'+transaction.blockNumber+'">'+transaction.blockNumber+'</a>');
+	    $('#trans_blockNumber').html('<a href="/blocks/block/'+transaction.blockNumber+'">'+transaction.blockNumber+'</a> ('+ confirmations +' block confirmations)');
 	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
 	    console.log(transaction.value);
 	    var transactionValue = poa.fromWei(transaction.value, 'ether');
@@ -89,6 +92,18 @@
 	    var gasgwei  = poa.fromWei(transaction.gasPrice.toFixed(9), 'gwei');
 	    
 	    var transfee = gasprice * transaction.gas;
+	    
+	    var receipt  = transaction_receipt(hash);
+	    var status   = poa.toDecimal(receipt.status);
+	    if(status === 1)
+	    {
+		    $('#trans_status').html('<span style="color:green; font-weight:bold;">Success</span>');
+	    }
+	    else
+	    {
+		    $('#trans_status').html('<span style="color:red; font-weight:bold;">Failed</span>');
+	    }
+	    
 	    
 	    $('#trans_txfee').html(createNumber(transfee));
 	    $('.trans_gwei').html(gasgwei);
@@ -379,6 +394,12 @@
 		}
 
 		
+	}
+	
+	function transaction_receipt(hash)
+	{
+		var receipt = poa.eth.getTransactionReceipt(hash);
+		return receipt;
 	}
 	
 		
