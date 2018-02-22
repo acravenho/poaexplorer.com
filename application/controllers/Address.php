@@ -51,7 +51,7 @@ class Address extends CI_Controller {
         }
 		
 		
-		
+		$data['internal_transactions'] = $this->Api_model->get_internal_transactions_account();
 		
 		
 		//$data['transactions'] = $this->Api_model->get_transactions_by_address();

@@ -57,6 +57,14 @@
 		<hr />
 		<ul class="nav nav-tabs" id="myTabs" role="tablist"> 
 			<li role="presentation" class="active"><a href="#transactions" id="transactions-tab" role="tab" data-toggle="tab" aria-controls="transactions" aria-expanded="true">Transactions</a></li> 
+			<?php
+				if(!empty($internal_transactions))
+				{
+					echo '<li role="presentation" class=""><a href="#internaltransactions" role="tab" id="internaltransactions-tab" data-toggle="tab" aria-controls="internaltransactions" aria-expanded="false">Internal Transactions</a></li>';
+
+				}	
+				
+			?>
 			<?php 
 				if($contract == 1)
 				{
@@ -113,6 +121,35 @@
 				echo '<p class="lead">Sorry, no transactions could be found!</p>';
 			}
 			echo '</div>';
+		?>
+		
+		<?php
+			if(!empty($internal_transactions))
+			{
+				echo '<div class="tab-pane" role="tabpanel" id="internaltransactions" aria-labelledby="internaltransactions-tab"> ';
+					echo '<table class="table table-striped transaction_table">';
+					echo '<thead>';
+						echo '<tr><th>ParentTxHash</th><th>Block</th><th>Age</th><th>From</th><th></th><th>To</th><th>Value</th></tr>';
+					echo '</thead>';
+					echo '<tbody>';
+						foreach($internal_transactions as $internal)
+						{
+							echo '<tr>';
+								echo '<td><a href="'.base_url().'txid/search/'.$internal->parent.'">'.substr($internal->parent,0,21).'</a></td>';
+								echo '<td><a href="'.base_url().'blocks/block/'.$internal->block.'">'.$internal->block.'</a></td>';
+								echo '<td>'.(!empty($internal->age) ? _ago($internal->age) : '-').'</td>';
+								echo '<td>'.($internal->from !== $this->uri->segment(3) ? '<a href="'.base_url().'address/search/'.$internal->from.'">'.substr($internal->from,0,21).'...</a>' : substr($internal->from,0,21).'...').'</td>';
+								
+								echo '<td><i class="fa fa-arrow-right"></i></td>';
+								
+								echo '<td>'.($internal->to !== $this->uri->segment(3) ? '<a href="'.base_url().'address/search/'.$internal->to.'">'.substr($internal->to,0,21).'...</a>' : substr($internal->to,0,21).'...').'</td>';
+								echo '<td>'.$internal->value.'</td>';
+							echo '</tr>';
+						}
+					echo '</tbody>';
+					echo '</table>';
+				echo '</div>';
+			}
 		?>
 		
 		<?php 

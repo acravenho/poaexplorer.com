@@ -283,5 +283,42 @@
 	        }
 	        return false;
         }
+        
+        public function get_transaction_by_hash($hash)
+        {
+	        $this->db->where('txid', $hash);
+	        $sql = $this->db->get('transactions');
+	        if($sql->num_rows() > 0)
+	        {
+		        return $sql->row();
+	        }
+	        return false;
+        }
+        
+        
+        public function get_internal_transactions_account()
+        {
+	        $address = $this->uri->segment(3);
+	        $this->db->where('to', $address);
+	        $this->db->or_where('from', $address);
+	        $this->db->or_where('address', $address);
+	        $this->db->order_by('id', 'DESC');
+	        $sql = $this->db->get('internal_transactions');
+	        if($sql->num_rows() > 0)
+	        {
+		        $results = array();
+		        foreach($sql->result() as $row) {
+			        $trans = $this->get_transaction_by_hash($row->parent);
+			        $value = number_format($trans->transactionValue,18);
+			        if(number_format($row->value, 18) > $value)
+			        {
+				        $row->age   = $trans->time;
+				        $row->block = $trans->blockNumber;
+				        $results[] = $row;
+				    }
+		        }
+		        return $results;
+	        }
+        }
 
 }
