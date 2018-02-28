@@ -1,4 +1,9 @@
-
+<?php
+			$ethprice = json_decode(file_get_contents('https://api.coinmarketcap.com/v1/ticker/ethereum/'));
+			$poaprice = json_decode(file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=POAETH'));
+			$poaeth   = $poaprice->price;
+			$price = $ethprice[0]->price_usd;
+?>
 <div class="row">
 	<div class="col-md-12">
 		<h2>Transaction History</h2>
@@ -16,10 +21,7 @@
 		</ul>
 	</div>
 	<div class="col-md-6">
-		<?php
-			$ethprice = json_decode(file_get_contents('https://api.coinmarketcap.com/v1/ticker/ethereum/'));
-			$price = $ethprice[0]->price_usd;
-		?>
+		
 		
 		<?php
 			if($contract == 1)
@@ -43,7 +45,7 @@
 		
 		<?php } ?>
 		
-				<p class="small">The POA Value was calculated using the TGE purchase price of .00023 ETH per POA token. The current price of Ethereum is $<span class="eth_price"><?php echo $price; ?></span>.</p>
+				<p class="small">The POA Value was calculated using the Binance API price of <span class="poa_price"><?php echo $poaeth; ?></span> ETH per POA token. The current price of Ethereum is $<span class="eth_price"><?php echo $price; ?></span>.</p>
 			
 	</div>
 	

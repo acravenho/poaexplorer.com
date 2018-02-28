@@ -43,6 +43,7 @@
 				$data['hash'] = $transactions[$i]->hash;
 				$data['value'] = wei_to_ether(decode_hex($transactions[$i]->value));
 				$data['to'] = $transactions[$i]->to;
+				$data['creates'] = $transactions[$i]->creates;
 				$data['tfrom'] = $transactions[$i]->from;
 				$data['blockHash'] = $transactions[$i]->blockHash;
 				$data['blockNumber'] = decode_hex($transactions[$i]->blockNumber);
@@ -59,7 +60,7 @@
 				
 				if($ret->num_rows === 0) {
 					$now = strtotime("now");
-					$ins = "INSERT INTO transactions (`to`, `from`, `blockHash`, `blockNumber`, `txid`, `transactionValue`, `gas`, `gasPrice`, `nonce`, `time`) VALUES ('".prepareData($data['to'])."', '".prepareData($data['tfrom'])."', '".prepareData($data['blockHash'])."', '".prepareData($data['blockNumber'])."', '".prepareData($data['hash'])."', '".prepareData($data['value'])."', '".prepareData($data['gas'])."', '".prepareData($data['gasPrice'])."', '".prepareData($data['nonce'])."', '".$now."')";
+					$ins = "INSERT INTO transactions (`to`, `from`, `blockHash`, `creates`, `blockNumber`, `txid`, `transactionValue`, `gas`, `gasPrice`, `nonce`, `time`) VALUES ('".prepareData($data['to'])."', '".prepareData($data['tfrom'])."', '".prepareData($data['blockHash'])."', '".prepareData($data['creates'])."', '".prepareData($data['blockNumber'])."', '".prepareData($data['hash'])."', '".prepareData($data['value'])."', '".prepareData($data['gas'])."', '".prepareData($data['gasPrice'])."', '".prepareData($data['nonce'])."', '".$now."')";
 					if(!$link->query($ins)) {
 						printf("Errormessage: %s\n", mysqli_error($link));
 					}

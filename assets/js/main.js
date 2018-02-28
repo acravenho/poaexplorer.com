@@ -11,7 +11,8 @@
     
     function addressBalance(poa_address) {
 	    var ethprice = $('.eth_price').text();
-	    var conversion = ethprice * .00023;
+	    var poaprice = $('.poa_price').text();
+	    var conversion = ethprice * poaprice;
 	    var originalBalance = poa.eth.getBalance(poa_address);
 	    originalBalance = poa.fromWei(originalBalance, 'ether');
 
@@ -202,7 +203,7 @@
 				 var transaction = poa.eth.getTransaction(transactions[i]);
 				 var transactionValue = poa.fromWei(new BigNumber(transaction.value).toFixed(), 'ether');
 				 
-				 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td style="text-align:right;">'+transactionValue+' POA</td></tr>';
+				 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,12) +'...</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,12) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,12) +'...</a></td><td style="text-align:right;">'+transactionValue+' POA</td></tr>';
 				 $('#blockTransactions tbody').append(string);
 			 }
 		 } else {
@@ -257,7 +258,7 @@
 			}
 			 
 			 
-			/* if(transactionCount > 0) {
+			 if(transactionCount > 0) {
 				 for(i=0; i<transactionCount; i++) {
 					 var transaction = poa.eth.getTransaction(transactions[i]);
 					 console.log(transaction.value);
@@ -270,15 +271,15 @@
 				     }
 				     else
 				     {
-					    var tostring = '<a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,16) +'...</a>';
+					    var tostring = '<a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,12) +'...</a>';
 				     }
 					 
-					 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,16) +'....</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,16) +'...</a></td><td></td><td>'+tostring+'</td><td>'+transactionValue+'</td></tr>';
+					 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,12) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,12) +'...</a></td><td><i class="fa fa-arrow-right"></i></td><td>'+tostring+'</td><td>'+transactionValue+'</td></tr>';
 					 $('#blockTransactions tbody tr:first').before(string);
 					 $('#blockTransactions tbody tr:first').hide().fadeIn('slow');
 					 $('#blockTransactions tbody tr:last').remove();				 
 				}
-			 } */
+			 } 
      
         });
 		 

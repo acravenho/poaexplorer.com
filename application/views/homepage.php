@@ -1,5 +1,7 @@
 	<?php
 			$ethprice = json_decode(file_get_contents('https://api.coinmarketcap.com/v1/ticker/ethereum/'));
+			$poaprice = json_decode(file_get_contents('https://api.binance.com/api/v3/ticker/price?symbol=POAETH'));
+			$poaeth   = $poaprice->price;
 			$price = $ethprice[0]->price_usd;
 		?>
 	
@@ -14,13 +16,13 @@
 			<ul class="list-group">
 				<li class="list-group-item d-flex justify-content-between align-items-center">Circulating POA: <span class="badge badge-primary badge-pill"><?php echo number_format($totalBalance->totalBalance); ?></span></li>
 				<li class="list-group-item d-flex justify-content-between align-items-center">Total Wallets: <span class="badge badge-primary badge-pill"><?php echo number_format($totalWallets); ?></span></li>
-				<li class="list-group-item d-flex justify-content-between align-items-center">Market Cap: <span class="badge badge-primary badge-pill">$<?php echo number_format($totalBalance->totalBalance * .00023 * $price); ?></span></li>
+				<li class="list-group-item d-flex justify-content-between align-items-center">Market Cap: <span class="badge badge-primary badge-pill">$<?php echo number_format($totalBalance->totalBalance * $poaeth * $price); ?></span></li>
 			</ul>
 			
 			
 		
 		
-		<p class="small">The POA Market Capitalization was calculated using the TGE purchase price of .00023 ETH per POA token. The current price of Ethereum is $<span class="eth_price"><?php echo $price; ?></span>.</p>
+		<p class="small">The POA Market Capitalization was calculated using the Binance API price of <?php echo $poaeth; ?> ETH per POA token. The current price of Ethereum is $<span class="eth_price"><?php echo $price; ?></span>.</p>
 
 			<hr />
 		</div>
@@ -61,7 +63,7 @@
 						</div>
 						<div class="pull-right">
 							<span class="network-label">USD/POA</span> <br />
-							<span class="network-value">$<?php echo number_format($price * .00023,4); ?></span>
+							<span class="network-value">$<?php echo number_format($price * $poaeth,4); ?></span>
 						</div>
 					</div>
 				</div>
