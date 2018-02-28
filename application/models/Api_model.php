@@ -172,13 +172,16 @@
 	        }
         }
         
-        public function get_total_balances() {
-	        $this->db->select('SUM(balance) AS totalBalance', FALSE);
-	        $this->db->where('exclude', 0);
-	        $sql = $this->db->get('wallets');
-	        if($sql->num_rows() > 0) {
-		        return $sql->row();
-	        }
+         public function get_total_balances($exclude = true) {
+	       $this->db->select('SUM(balance) AS totalBalance', FALSE);
+	       if($exclude == true)
+	       {
+	       	$this->db->where('exclude', 0);
+	       }
+	       $sql = $this->db->get('wallets');
+	       if($sql->num_rows() > 0) {
+	       return $sql->row();
+	       }
         }
         
         public function get_richlist($limit = 20, $start = 0) {
