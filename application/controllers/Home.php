@@ -9,7 +9,7 @@ class Home extends CI_Controller {
    	}
 	public function index()
 	{
-		$data['totalBalance'] = $this->Api_model->get_total_balances();
+		$data['totalBalance'] = $this->Api_model->circulating_supply();
 		$data['totalWallets'] = $this->Api_model->total_wallets();
 		$data['transactions'] = $this->Api_model->get_trans(5);
 		$data['blocks']       = $this->Api_model->get_main_blocks(5);

@@ -31,7 +31,7 @@ class Tools extends CI_Controller {
 	
 	public function totalpoa()
 	{
-		$data['total'] = $this->Api_model->get_total_balances(false);
-		echo $data['total']->totalBalance;
+		$data['total'] = $this->Api_model->circulating_supply();
+		echo $data['total'];
 	}
 }
