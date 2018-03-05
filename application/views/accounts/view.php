@@ -1,6 +1,6 @@
 	<?php
-			$ethprice = json_decode(file_get_contents('https://api.coinmarketcap.com/v1/ticker/ethereum/'));
-			$price = $ethprice[0]->price_usd;
+			$poaprice = json_decode(file_get_contents('https://api.coinmarketcap.com/v1/ticker/poa-network/'));
+			$price = $poaprice[0]->price_usd;
 		?>
 	
 	<div class="row">
@@ -26,7 +26,7 @@
 								echo '<td>'.($r->contract == 1 ? '<i class="fa fa-file-text-o"></i>' : '').' <a href="'.base_url().'/address/search/'.$r->wallet.'">'.$r->wallet.'</a></td>';
 								echo '<td>'.number_format($r->balance).'</td>';
 								echo '<td>'.number_format($percentage,2).'%</td>';
-								echo '<td>$'.number_format($r->balance * .00023 * $price).'</td>';
+								echo '<td>$'.number_format($r->balance * $price).'</td>';
 							echo '</tr>';
 							$i++;
 						}
