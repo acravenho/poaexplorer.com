@@ -1,12 +1,5 @@
 <?php
 	require 'includes/database.php';
-	require 'includes/functions.php';
-	$scriptname = 'check addresses';
-	
-	if(checkscript($scriptname) == true) {
-		die();
-	} 
-	
 	$poa = new Ethereum('https://core.poa.network', '');
 	
 	$sql = "SELECT * FROM transactions ORDER BY tid DESC LIMIT 20000";
@@ -29,10 +22,12 @@
 		         	insert_wallet($row['creates']);
 	         	} 
 	         }
-        }
+         	
+         	
+       	}
 	}
 	
-	scriptoff($scriptname);
+	
 	
 	
 	function check_wallet($wallet) {
@@ -68,6 +63,8 @@
 	}
 	
 	
-	
+	function prepareData($data) {
+		return trim($data);
+	}
 	
 	

@@ -1,5 +1,9 @@
 	<?php
 			$poaprice = json_decode(file_get_contents('https://api.coinmarketcap.com/v1/ticker/poa-network/'));
+			$data = json_decode(file_get_contents('https://tuo2uaw74i.execute-api.us-east-1.amazonaws.com/POA/blockInfo'));
+	        $aveBlockTime    = $data->Item->stat->M->avgBlockTime->N;
+	        $lastBlockTime   = $data->Item->stat->M->lastBlockTimestamp->N;
+	        $lastBlockNumber = $data->Item->stat->M->lastBlockNumber->N;
 			$price = $poaprice[0]->price_usd;
 		?>
 	
@@ -20,7 +24,7 @@
 			
 		
 		
-		<p class="small">The POA Market Capitalization was calculated using the CoinMarketCap.com API of $<?php echo $price; ?> per POA token.</p>
+		<p class="small">The POA Market Capitalization was calculated using the CoinMarketCap.com API of $<?php echo $price; ?> per POA token!</p>
 
 			<hr />
 		</div>
@@ -34,7 +38,7 @@
 						</div>
 						<div class="pull-right">
 							<span class="network-label">BLOCK</span><br />
-							<span class="network-value"><span class="blocknum"></span></span>
+							<span class="network-value"><span class="blocknum"><?php echo $lastBlockNumber; ?></span></span>
 						</div>
 					</div>
 					<div class="col-sm-3">
@@ -52,7 +56,7 @@
 						</div>
 						<div class="pull-right">
 							<span class="network-label">BLOCK TIME</span><br />
-							<span class="network-value">5.00S</span>
+							<span class="network-value"><?php echo number_format($aveBlockTime,4); ?>S</span>
 						</div>
 					</div>
 					<div class="col-sm-3">
