@@ -5,7 +5,7 @@
 	$scriptname = 'internal transactions';
 	
 	if(checkscript($scriptname) == true) {
-		die('Program Died');
+		die();
 	} 
 	
 	
@@ -52,7 +52,7 @@
 		}
 	}
 	
-	scriptoff($scriptname);
+	
 	
 	
 	function check_internal_tranaction($array, $txid)
@@ -112,8 +112,6 @@
 		return false;
 	}
 	
-	
-	
-	
+	scriptoff($scriptname);
 	
 	
