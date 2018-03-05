@@ -16,6 +16,18 @@ class Api extends CI_Controller {
 		
 	}
 	
+	public function network() {
+		$data['stats'] = $this->Api_model->network_stats();
+		echo json_encode($data['stats']);
+	}
+	
+	public function balance() {
+		$this->load->helper('web3');
+		$data['balance'] = $this->Api_model->balance();
+		echo json_encode($data['balance']);
+	}
+	
+	
 	public function post() {
 		$this->Api_model->post_data();
 	}

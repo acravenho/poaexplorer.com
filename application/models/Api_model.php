@@ -178,6 +178,7 @@
 	       {
 	       	$this->db->where('exclude', 0);
 	       }
+	       
 	       $sql = $this->db->get('wallets');
 	       if($sql->num_rows() > 0) {
 	       return $sql->row();
@@ -322,6 +323,92 @@
 		        }
 		        return $results;
 	        }
+        }
+        
+        public function circulating_supply($block = NULL)
+        {
+	        $block = ($block == NULL ? $this->last_block() : $block);
+	        $start     = 252460800;
+	        $twenty    = $start - ($start * .2) + $block;
+	        return $twenty;
+	        
+        }
+        
+        public function total_supply($block = NULL)
+        {
+	        $block = ($block == NULL ? $this->last_block() : $block);
+	        $start     = 252460800;
+	        return $start + $block;
+	        
+        }
+        
+        public function network_stats()
+        {
+	        $data = json_decode(file_get_contents('https://tuo2uaw74i.execute-api.us-east-1.amazonaws.com/POA/blockInfo'));
+	        $aveBlockTime    = $data->Item->stat->M->avgBlockTime->N;
+	        $lastBlockTime   = $data->Item->stat->M->lastBlockTimestamp->N;
+	        $lastBlockNumber = $data->Item->stat->M->lastBlockNumber->N;
+	        
+	        $array = array(
+		      'average_block_time' => $aveBlockTime,
+		      'last_block_timestamp' => $lastBlockTime,
+		      'last_block_number' => $lastBlockNumber,
+		      'circulating_supply' => $this->circulating_supply($lastBlockNumber),
+		      'total_supply'       => $this->total_supply($lastBlockNumber)
+		        
+	        );
+	        
+	        
+	        
+	        return $array;
+        }
+        
+        public function get_balance($address) {
+	        $this->db->where('wallet', $address);
+	        $sql = $this->db->get('wallets');
+	        if($sql->num_rows() > 0)
+	        {
+		        $row = $sql->row();
+		        return $row->balance;
+	        }
+	        else
+	        {
+		        return 0;
+	        }
+        }
+        
+        public function get_transaction_count($address) {
+	        $this->db->where('to', $address);
+	        $this->db->or_where('from', $address);
+	        $this->db->or_where('creates', $address);
+	        $sql = $this->db->get('transactions');
+	        return $sql->num_rows();
+        }
+        
+        public function balance() {
+	        $address = $this->uri->segment(3);
+	        if(!empty($address))
+	        {
+		        $status = 'ok';
+		        $balance      = _balance($address);
+		        $transactions = $this->get_transaction_count($address);
+		        return array(
+			        'status' => $status,
+			        'address' => $address,
+			        'balance' => $balance,
+			        'transactions_count' => $transactions
+		        );
+	        }
+	        else
+	        {
+		        $status = 'error';
+		        $message = 'Address not found!';
+		        return array(
+			      'status' => $status,
+			      'message' => $message  
+		        );
+	        }
+	        
         }
 
 }
