@@ -6,6 +6,7 @@
 		<table id="trans_table" class="table table-striped transaction_table">
 			<tr><th style="width:20%;">Hash:</th><td id="trans_hash"></td></tr>
 			<tr><th style="width:20%;">Block Number:</th><td id="trans_blockNumber"></td></tr>
+			<tr><th style="width:20%;">Age:</th><td id="trans_time"></td></tr>
 			<tr><th style="width:20%;">Status:</th><td id="trans_status"></td></tr>
 			<tr><th style="width:20%;">From:</th><td id="trans_from"></td></tr>
 			<tr><th style="width:20%;">To:</th><td id="trans_to"></td></tr>

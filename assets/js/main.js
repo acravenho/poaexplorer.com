@@ -10,9 +10,8 @@
     }
     
     function addressBalance(poa_address) {
-	    var ethprice = $('.eth_price').text();
 	    var poaprice = $('.poa_price').text();
-	    var conversion = ethprice * poaprice;
+	    var conversion = poaprice;
 	    var originalBalance = poa.eth.getBalance(poa_address);
 	    originalBalance = poa.fromWei(originalBalance, 'ether');
 
@@ -66,8 +65,11 @@
 	    
 	    var transaction = poa.eth.getTransaction(hash);
 	    var currentBlock = poa.eth.blockNumber;
-	    console.log(currentBlock);
 	    var confirmations = currentBlock - transaction.blockNumber;
+	    var blockFetch    = poa.eth.getBlock(transaction.blockNumber);
+	    
+	    
+	   
 	    
 	    var to = transaction.to;
 	    if(to == null)
@@ -82,6 +84,11 @@
 	    $('#trans_hash').html(transaction.blockHash);
 	    $('#trans_blockNumber').html('<a href="/blocks/block/'+transaction.blockNumber+'">'+transaction.blockNumber+'</a> ('+ confirmations +' block confirmations)');
 	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
+	    var now = new Date(blockFetch.timestamp*1000); 
+		var now_utc = (now.getUTCMonth()+1)+'-'+now.getUTCDate()+'-'+now.getUTCFullYear() + ' ' + now.getUTCHours()+':'+now.getUTCMinutes()+':'+now.getUTCSeconds()+' (UTC)';
+		
+		$('#trans_time').html(timeSince(blockFetch.timestamp) + ' - ' + now_utc);
+	    
 	    console.log(transaction.value);
 	    var transactionValue = poa.fromWei(transaction.value, 'ether');
 	    transactionValue = transactionValue.toFixed(18);
@@ -113,6 +120,8 @@
 	    $('#trans_nonce').html(transaction.nonce);
 	    $('#trans_input .highlight pre').html(transaction.input);
 	 }
+	 
+	 function convertDateToUTC(date) { return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); }
 	 
 	 
 	 function get_internal_transactions(hash)
@@ -424,6 +433,16 @@
 	function fixNumber(value)
 	{
 		return value.replace(/\.?0+$/,"");
+	}
+	
+	function dateAge(timestamp)
+	{
+		var date = new Date(timestamp*1000);
+		var day = date.getUTCDate();
+		var month = "0" + date.getUTCMonth();
+		var year = "0" + date.getUTCFullYear();
+		var formattedTime = month + ':' + day + ':' + year;
+		return formattedTime;
 	}
     
     
