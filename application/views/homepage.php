@@ -136,7 +136,7 @@
 									
 									
 									
-									echo '<td style="text-align:right;">'.fixBigDecimal($tx->transactionValue).'</td>';
+									echo '<td style="text-align:right;">'.($tx->transactionValue > 1 ? $tx->transactionValue : fixBigDecimal($tx->transactionValue)).'</td>';
 								echo '</tr>';
 							}	
 						}

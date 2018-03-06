@@ -29,7 +29,7 @@
 							
 							
 
-							echo '<td style="text-align:right;">'.fixBigDecimal($t->transactionValue).' POA</td>';
+							echo '<td style="text-align:right;">'.($t->transactionValue > 1 ? $t->transactionValue : fixBigDecimal($t->transactionValue)).' POA</td>';
 						echo '</tr>';
 					}
 				
