@@ -394,6 +394,7 @@
 		addressArray['0x18Bea833D503341C529a788c82909337e552a44e'] = 'Lillian Chan';
 		addressArray['0xf1F51e933D6aAd056236E0a45c1cC5b335ca1A75'] = 'Stephen Arsenault';
 		addressArray['0x28E7605a631441870e80A283Aa43Ae4145f82cc3'] = 'Melanie Marsollier';
+		addressArray['0xdAd49e6CbDE849353ab27DeC6319E687BFc91A41'] = 'Alex Emelyanov';
 		
 		for(var key in addressArray)
 		{
