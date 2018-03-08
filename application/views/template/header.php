@@ -6,6 +6,7 @@
         <title><?php echo (!empty($title) ? $title : 'POA Explorer'); ?></title>
         <meta name="description" content="<?php echo (!empty($description) ? $description : 'POA Network block explorer.'); ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google" content="notranslate" />
 
         <link rel="manifest" href="site.webmanifest">
         <!-- Place favicon.ico in the root directory -->
