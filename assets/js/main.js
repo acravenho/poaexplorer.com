@@ -64,9 +64,19 @@
 	    
 	    
 	    var transaction = poa.eth.getTransaction(hash);
+	    if(!transaction) {
+		    $('#trans_table tbody').html('<tr><td style="font-size:24px; font-weight:bold;">Sorry, this transaction could not be found!</td></tr>');
+		    $('.lead').eq(1).html('');
+		    $('#internalTransactions').html('');
+		    return;
+	    }
+	    
+	    
 	    var currentBlock = poa.eth.blockNumber;
 	    var confirmations = currentBlock - transaction.blockNumber;
 	    var blockFetch    = poa.eth.getBlock(transaction.blockNumber);
+	    
+	    
 	    
 	    
 	   
