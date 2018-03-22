@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<p class="lead">TXID: <?php echo $this->uri->segment(3); ?></p>
+		<p class="lead">TXID: <?php echo $txid; ?></p>
 		<hr>
 
 		<table id="trans_table" class="table table-striped transaction_table">

@@ -222,7 +222,7 @@
 				 var transaction = poa.eth.getTransaction(transactions[i]);
 				 var transactionValue = poa.fromWei(new BigNumber(transaction.value).toFixed(), 'ether');
 				 
-				 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,12) +'...</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,12) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,12) +'...</a></td><td style="text-align:right;">'+transactionValue+' POA</td></tr>';
+				 var string = '<tr><td><a href="/tx/'+transactions[i]+'">'+ transactions[i].substring(0,12) +'...</a></td><td><a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,12) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,12) +'...</a></td><td style="text-align:right;">'+transactionValue+' POA</td></tr>';
 				 $('#blockTransactions tbody').append(string);
 			 }
 		 } else {
@@ -286,14 +286,14 @@
 					 
 					 if(transaction.to == null)
 				     {
-					    var tostring = '<i class="fa fa-file-text"></i> <a href="/txid/search/'+transactions[i]+'">Contract Creation</a>';
+					    var tostring = '<i class="fa fa-file-text"></i> <a href="/tx/'+transactions[i]+'">Contract Creation</a>';
 				     }
 				     else
 				     {
 					    var tostring = '<a href="/address/search/'+transaction.to+'">'+ transaction.to.substring(0,12) +'...</a>';
 				     }
 					 
-					 var string = '<tr><td><a href="/txid/search/'+transactions[i]+'">'+ transactions[i].substring(0,12) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,12) +'...</a></td><td><i class="fa fa-arrow-right"></i></td><td>'+tostring+'</td><td>'+transactionValue+'</td></tr>';
+					 var string = '<tr><td><a href="/tx/'+transactions[i]+'">'+ transactions[i].substring(0,12) +'...</a></td><td><a href="/address/search/'+transaction.from+'">'+ transaction.from.substring(0,12) +'...</a></td><td><i class="fa fa-arrow-right"></i></td><td>'+tostring+'</td><td>'+transactionValue+'</td></tr>';
 					 $('#blockTransactions tbody tr:first').before(string);
 					 $('#blockTransactions tbody tr:first').hide().fadeIn('slow');
 					 $('#blockTransactions tbody tr:last').remove();				 

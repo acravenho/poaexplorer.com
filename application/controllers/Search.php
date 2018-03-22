@@ -14,7 +14,7 @@ class Search extends CI_Controller {
 		$string = trim($this->input->post('hash'));
 		$count  = strlen($string);
 		if(strlen($string) > 42) {
-			redirect('/txid/search/'.$string, 'refresh');
+			redirect('/tx/'.$string, 'refresh');
 		} elseif(strlen($string) == 42) {
 			redirect('/address/search/'.$string, 'refresh');
 		} elseif(is_numeric($string)) {

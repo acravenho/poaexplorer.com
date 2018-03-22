@@ -119,7 +119,7 @@
 							foreach($transactions as $tx)
 							{
 								echo '<tr>';
-									echo '<td><a href="'.base_url().'txid/search/'.$tx->txid.'">'.substr($tx->txid, 0, 12).'...</a></td>';
+									echo '<td><a href="'.base_url().'tx/'.$tx->txid.'">'.substr($tx->txid, 0, 12).'...</a></td>';
 									
 									echo '<td>'.($tx->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$tx->from.'">'.substr($tx->from, 0, 12).'....</a></td>';
 									
@@ -127,7 +127,7 @@
 									
 									if(empty($tx->to))
 									{
-										echo '<td><i class="fa fa-file-text" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract Creation"></i> <a href="'.base_url().'txid/search/'.$tx->txid.'">Contract Creation</a></td>';
+										echo '<td><i class="fa fa-file-text" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract Creation"></i> <a href="'.base_url().'tx/'.$tx->txid.'">Contract Creation</a></td>';
 									}
 									else
 									{

@@ -31,7 +31,7 @@
 				<?php
 					if(!empty($contract_creation))
 					{
-						echo '<a href="'.base_url().'address/search/'.$contract_creation->from.'">'.substr($contract_creation->from, 0, 16).'...</a> at txn <a href="'.base_url().'txid/search/'.$contract_creation->txid.'">'.substr($contract_creation->txid, 0, 16).'...</a>';
+						echo '<a href="'.base_url().'address/search/'.$contract_creation->from.'">'.substr($contract_creation->from, 0, 16).'...</a> at txn <a href="'.base_url().'tx/'.$contract_creation->txid.'">'.substr($contract_creation->txid, 0, 16).'...</a>';
 					} 
 					else
 					{
@@ -95,7 +95,7 @@
 					foreach($transactions as $t) {
 						echo '<tr>';
 							echo '<td><a href="'.base_url().'blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
-							echo '<td><a href="'.base_url().'txid/search/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
+							echo '<td><a href="'.base_url().'tx/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
 							echo '<td>'.($t->time > 0 ? _ago($t->time) : '-').'</td>';
 							echo '<td>'.($t->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' '.($t->from == $this->uri->segment(3) ? substr($t->from, 0, 21).'...' : '<a href="'.base_url().'address/search/'.$t->from.'">'.substr($t->from, 0, 21).'....</a>').'</td>';
 							
@@ -135,7 +135,7 @@
 						foreach($internal_transactions as $internal)
 						{
 							echo '<tr>';
-								echo '<td><a href="'.base_url().'txid/search/'.$internal->parent.'">'.substr($internal->parent,0,21).'</a></td>';
+								echo '<td><a href="'.base_url().'tx/'.$internal->parent.'">'.substr($internal->parent,0,21).'</a></td>';
 								echo '<td><a href="'.base_url().'blocks/block/'.$internal->block.'">'.$internal->block.'</a></td>';
 								echo '<td>'.(!empty($internal->age) ? _ago($internal->age) : '-').'</td>';
 								echo '<td>'.($internal->from !== $this->uri->segment(3) ? '<a href="'.base_url().'address/search/'.$internal->from.'">'.substr($internal->from,0,21).'...</a>' : substr($internal->from,0,21).'...').'</td>';
