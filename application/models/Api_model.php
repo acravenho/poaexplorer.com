@@ -201,6 +201,12 @@
 	        return $sql->num_rows();
 	       
         }
+        public function total_contracts() {
+	        $this->db->where('contract', '1');
+	        $sql = $this->db->get('wallets');
+	        return $sql->num_rows();
+	       
+        }
         
         
         public function addblock() {

@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 	{
 		$data['totalBalance'] = $this->Api_model->circulating_supply();
 		$data['totalWallets'] = $this->Api_model->total_wallets();
+		$data['totalContracts'] = $this->Api_model->total_contracts();
 		$data['transactions'] = $this->Api_model->get_trans(5);
 		$data['blocks']       = $this->Api_model->get_main_blocks(5);
 		
