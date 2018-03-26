@@ -79,6 +79,8 @@
 		        foreach($sql->result() as $row) {
 			        $row->to_contract = $this->is_contract($row->to);
 			        $row->from_contract = $this->is_contract($row->from);
+			        $row->to_name = $this->wallet_name($row->to);
+			        $row->from_name = $this->wallet_name($row->from);
 			        $results[] = $row;
 		        }
 		        return $results;

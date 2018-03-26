@@ -13,7 +13,20 @@
 							echo '<td><a href="'.base_url().'blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
 							echo '<td>'.(!empty($t->time) ? _ago($t->time). ' ago' : '-').'</td>';
 							echo '<td><a href="'.base_url().'tx/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
-							echo '<td>'.($t->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').'<a href="'.base_url().'address/search/'.$t->from.'">'.substr($t->from, 0, 21).'...</a></td>';
+							
+							echo '<td>';
+								if($t->from_contract == 1) {
+									echo '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i> ';
+								}
+								
+								echo '<a href="'.base_url().'address/search/'.$t->from.'">';
+								if(!empty($t->from_name)) {
+									echo $t->from_name;
+								} else {
+									echo substr($t->from, 0, 21).'...';
+								}
+								echo '</a>';
+							echo '</td>';
 							
 							
 							echo '<td><i class="fa fa-arrow-right"></i></td>';
@@ -24,7 +37,20 @@
 							}
 							else
 							{
-								echo '<td>'.($t->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' <a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'...</a></td>';
+								
+								echo '<td>';
+									if($t->to_contract == 1) {
+										echo '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i> ';
+									}
+									
+									echo '<a href="'.base_url().'address/search/'.$t->to.'">';
+									if(!empty($t->to_name)) {
+										echo $t->to_name;
+									} else {
+										echo substr($t->to, 0, 21).'...';
+									}
+									echo '</a>';
+								echo '</td>';	
 							}
 							
 							

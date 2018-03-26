@@ -14,7 +14,7 @@ class Transactions extends CI_Controller {
 		$this->load->library('pagination');
 		
 		$data = array();
-        $limit_per_page = 50;
+        $limit_per_page = 30;
         $start_index = ($this->uri->segment(3) ? $this->uri->segment(3) : 0);
         $total_records = $this->Api_model->get_total_transactions();
         
