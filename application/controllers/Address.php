@@ -14,6 +14,8 @@ class Address extends CI_Controller {
 			show_404();
 		}
 		
+		$data['wallet'] = $this->Api_model->get_wallet($data['address']);
+		
         $limit_per_page = 20;
         $start_index = ($this->uri->segment(4) ? $this->uri->segment(4) : 0);
         $total_records = $this->Api_model->get_total_transactions($data['address']);

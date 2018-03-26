@@ -23,7 +23,7 @@
 							$percentage = $r->balance/$total_balance * 100;
 							echo '<tr>';
 								echo '<td>'.$i.'</td>';
-								echo '<td>'.($r->contract == 1 ? '<i class="fa fa-file-text-o"></i>' : '').' <a href="'.base_url().'/address/search/'.$r->wallet.'">'.$r->wallet.'</a></td>';
+								echo '<td>'.($r->contract == 1 ? '<i class="fa fa-file-text-o"></i>' : '').' <a href="'.base_url().'/address/search/'.$r->wallet.'">'.(!empty($r->name) ? $r->name : $r->wallet).'</a></td>';
 								echo '<td>'.number_format($r->balance).'</td>';
 								echo '<td>'.number_format($percentage,2).'%</td>';
 								echo '<td>$'.number_format($r->balance * $price).'</td>';

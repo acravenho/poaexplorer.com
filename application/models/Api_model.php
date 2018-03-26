@@ -115,6 +115,14 @@
 	        }
         }
         
+        public function wallet_name($wallet) {
+	        $sql = $this->db->get_where('wallets', array('wallet' => $wallet));
+	        if($sql->num_rows() > 0) {
+		        $row = $sql->row();
+		        return $row->name;
+	        }
+        }
+        
         public function contract_creation($address)
         {
 	        $sql = $this->db->get_where('transactions', array('creates' => $address));
@@ -164,6 +172,8 @@
 		        foreach($sql->result() as $row) {
 			        $row->to_contract = $this->is_contract($row->to);
 			        $row->from_contract = $this->is_contract($row->from);
+			        $row->to_name = $this->wallet_name($row->to);
+			        $row->from_name = $this->wallet_name($row->from);
 			        $results[] = $row;
 		        }
 		        return $results;
@@ -191,6 +201,15 @@
 	        $sql = $this->db->get('wallets');
 	        if($sql->num_rows() > 0) {
 		        return $sql->result();
+	        }
+	        return false;
+        }
+        
+        public function get_wallet($wallet) {
+	        $this->db->where('wallet', $wallet);
+	        $sql = $this->db->get('wallets');
+	        if($sql->num_rows() > 0) {
+		        return $sql->row();
 	        }
 	        return false;
         }

@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<h2>Transaction History</h2>
-		<p class="lead"><?php echo ($contract == 1 ? '<i class="fa fa-file-text-o"></i> Contract ' : ''); ?> Address: <?php echo $this->uri->segment(3); ?></p>
+		<p class="lead"><?php echo ($contract == 1 ? '<i class="fa fa-file-text-o"></i> Contract ' : ''); ?> Address: <?php echo $this->uri->segment(3); ?> <?php echo (!empty($wallet->name) ? '('.$wallet->name.')' : ''); ?></p>
 		<hr />
 	</div>
 </div>
@@ -97,7 +97,27 @@
 							echo '<td><a href="'.base_url().'blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
 							echo '<td><a href="'.base_url().'tx/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
 							echo '<td>'.($t->time > 0 ? _ago($t->time) : '-').'</td>';
-							echo '<td>'.($t->from_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' '.($t->from == $this->uri->segment(3) ? substr($t->from, 0, 21).'...' : '<a href="'.base_url().'address/search/'.$t->from.'">'.substr($t->from, 0, 21).'....</a>').'</td>';
+							
+							echo '<td>';
+							if($t->from_contract == 1) {
+								echo '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i> ';
+							}
+							
+							if(strtolower($t->from) == strtolower($this->uri->segment(3))) {
+								if(!empty($t->from_name)) {
+									echo $t->from_name;
+								} else {
+									echo substr($t->from, 0, 21).'...';
+								}
+							} else {
+								if(!empty($t->from_name)) {
+									echo '<a href="'.base_url().'address/search/'.$t->from.'">'.$t->from_name.'</a>';
+								} else {
+									echo '<a href="'.base_url().'address/search/'.$t->from.'">'.substr($t->from, 0, 21).'....</a>';
+								}
+							}
+							echo '</td>';
+						
 							
 							echo '<td>'.($t->from == $this->uri->segment(3) ? '<span class="label label-warning">&nbsp;OUT&nbsp;</span>' : '<span class="label label-success">&nbsp;IN&nbsp;</span>').'</td>';
 							
@@ -107,7 +127,25 @@
 							}
 							else
 							{
-								echo '<td>'.($t->to_contract == 1 ? '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i>' : '').' '.($t->to == $this->uri->segment(3) ? substr($t->to, 0, 21).'...' : '<a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'....</a>').'</td>';
+								echo '<td>';
+								if($t->to_contract == 1) {
+									echo '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i> ';
+								}
+								
+								if(strtolower($t->to) == strtolower($this->uri->segment(3))) {
+									if(!empty($t->to_name)) {
+										echo $t->to_name;
+									} else {
+										echo substr($t->to, 0, 21).'...';
+									}
+								} else {
+									if(!empty($t->to_name)) {
+										echo '<a href="'.base_url().'address/search/'.$t->to.'">'.$t->to_name.'</a>';
+									} else {
+										echo '<a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'....</a>';
+									}
+								}
+								echo '</td>';
 							}
 							
 							
