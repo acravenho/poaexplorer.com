@@ -61,6 +61,7 @@ class Address extends CI_Controller {
 		if($data['contract'] > 0)
 		{
 			$data['contract_creation'] = $this->Api_model->contract_creation($data['address']);
+			$data['verified_contract'] = $this->Api_model->verified_contracts($data['address']);
 		}
 		
 		$data['scripts'] = '<script>addressBalance("'.$data["address"].'");  transactionCount("'.$data["address"].'"); '.($data['contract'] == 1 ? 'getContractCode("'.$data['address'].'");' : '').' $("#myTabs a").click(function (e) {e.preventDefault();$(this).tab("show");});</script>';

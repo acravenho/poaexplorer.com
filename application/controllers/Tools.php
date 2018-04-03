@@ -10,6 +10,7 @@ class Tools extends CI_Controller {
    	}
 	public function verify()
 	{
+		$data['compilers'] = json_decode(file_get_contents('https://ethereum.github.io/solc-bin/bin/list.json'));
 		$data['title'] = 'POA Network Explorer - Verify Smart Contract';
 		$data['main'] = 'tools/verify';
 		$this->load->view('template/file', $data);

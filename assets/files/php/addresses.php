@@ -2,7 +2,7 @@
 	require 'includes/database.php';
 	$poa = new Ethereum('https://core.poa.network', '');
 	
-	$sql = "SELECT * FROM transactions ORDER BY tid DESC LIMIT 20000";
+	$sql = "SELECT * FROM transactions ORDER BY tid DESC LIMIT 1000";
 	$res = $link->query($sql);
 	if($res->num_rows > 0) {
 		while($row = mysqli_fetch_assoc($res)) {

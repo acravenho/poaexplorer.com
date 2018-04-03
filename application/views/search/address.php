@@ -68,7 +68,8 @@
 			<?php 
 				if($contract == 1)
 				{
-					echo '<li role="presentation" class=""><a href="#contractcode" role="tab" id="contractcode-tab" data-toggle="tab" aria-controls="contractcode" aria-expanded="false">Contract Code</a></li>';
+					echo '<li role="presentation" class=""><a href="#contractcode" role="tab" id="contractcode-tab" data-toggle="tab" aria-controls="contractcode" aria-expanded="false">'.(!empty($verified_contract) ? 'Contract Source <sup><span style="color:green;">Yes</span></sup>' : 'Contract Code').'</a></li>';
+					
 				}
 			?>
 		</ul>
@@ -192,19 +193,74 @@
 		
 		<?php 
 			if($contract == 1)
-			{
-				echo '<div class="tab-pane" role="tabpanel" id="contractcode" aria-labelledby="contractcode-tab"> ';
-				echo '<div class="contract_code">';
-				echo '<br />';
-				echo '<p><i class="fa fa-cogs"></i> Contract Creation Code</p>';
-				echo '<hr />';
-				echo '<figure class="highlight contractCode">';
-				echo '<pre>';
+			{	
+				if(!empty($verified_contract)) {
+					echo '<div class="tab-pane" role="tabpanel" id="contractcode" aria-labelledby="contractcode-tab"> ';
+					echo '<div class="contract_code">';
+					echo '<p><span style="font-weight:bold; color:green;"><i class="fa fa-check-circle-o"></i></span> Contract Source Code Verified!</p>';
+					echo '<div class="row" style="margin: 35px 0;">';
+						echo '<div class="col-md-6">';
+							echo '<table class="table">';
+								echo '<tr><th>Contract Name:</th><td>'.str_replace(':', '', $verified_contract->contractName).'</td></tr>';
+								echo '<tr><th>Compiler Version:</th><td>'.$verified_contract->compilerVersion.'</td></tr>';
+							echo '</table>';
+						echo '</div>';
+						echo '<div class="col-md-6">';
+							echo '<table class="table">';
+								echo '<tr><th>Optimization Enabled:</th><td>'.($verified_contract->optimization == 1 ? 'Yes': 'No').'</td></tr>';
+							echo '</table>';
+						echo '</div>';
+					echo '</div>';
+					echo '<hr />';
+					echo '<h4><strong>Contract Source Code <i class="fa fa-code"></i></strong></h4>';
+					echo '<figure class="highlight" style="margin-bottom:55px;">';
+					echo '<pre style="height: 200px; max-height: 350px; margin-top:7px;">';
+						echo $verified_contract->sourceCode;
+					echo '</pre>';		
+					echo '</figure>';
 					
-				echo '</pre>';		
-				echo '</figure>';
-				echo '</div>';
-				echo '</div>';
+					
+					echo '<h4><strong>Contract ABI <i class="fa fa-cogs"></i></strong> </h4>';
+					echo '<figure class="highlight" style="margin-bottom:55px;">';
+					echo '<pre style="height: 200px; max-height: 350px; margin-top:15px;">';
+						echo $verified_contract->abi;
+					echo '</pre>';		
+					echo '</figure>';
+					
+					
+					echo '<h4><strong>Contract Creation Code <i class="fa fa-building-o"></i></strong> </h4>';
+					echo '<figure class="highlight" style="margin-bottom:55px;">';
+					echo '<pre style="height: 200px; max-height: 350px;">';
+						echo $verified_contract->bytecode;
+					echo '</pre>';		
+					echo '</figure>';
+					
+					echo '<h4><strong>Swarm Source <i class="fa fa-database"></i></strong> </h4>';
+					echo '<figure class="highlight" style="margin-bottom:55px;">';
+					echo '<pre>';
+						echo $verified_contract->swarm;
+					echo '</pre>';		
+					echo '</figure>';
+					
+					echo '</div>';
+					echo '</div>';
+				} else {
+					echo '<div class="tab-pane" role="tabpanel" id="contractcode" aria-labelledby="contractcode-tab"> ';
+					echo '<div class="contract_code">';
+					
+					echo '<p><i class="fa fa-info-circle"></i> Are you The Contract Creator? <a href="/tools/verify/'.$wallet->wallet.'">Verify And Publish</a> your Contract Source Code Today!</p>';
+					
+					echo '<br />';
+					echo '<p><i class="fa fa-cogs"></i> Contract Creation Code</p>';
+					echo '<hr />';
+					echo '<figure class="highlight contractCode">';
+					echo '<pre>';
+						
+					echo '</pre>';		
+					echo '</figure>';
+					echo '</div>';
+					echo '</div>';
+				}
 			}	
 		?>
 	</div>

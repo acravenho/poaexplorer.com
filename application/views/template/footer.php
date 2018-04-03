@@ -22,6 +22,10 @@
         <script src="<?php echo base_url(); ?>assets/js/plugins.js"></script>
         <script src="https://use.fontawesome.com/8f2b480224.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/main.js?v=<?php echo strtotime("now"); ?>"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/validate.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/verifycontract.js?v=<?php echo strtotime("now"); ?>"></script>
+        
         
         <?php echo (!empty($scripts) ? $scripts : '');		?>
 		

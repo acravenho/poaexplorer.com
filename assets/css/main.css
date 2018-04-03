@@ -109,6 +109,10 @@ main, footer {
     background-color: #622c99;
 }
 
+.select-group .form-control-feedback {
+	right: 25px;
+}
+
 a {
 	color: #72b8fd;
 }
@@ -553,11 +557,10 @@ a {
 
 .highlight {
     padding: 9px 14px;
-    margin-bottom: 14px;
     background-color: #f7f7f9;
     border: 1px solid #e1e1e8;
     border-radius: 4px;
-    margin: 0;
+    margin: 0 0 15px 0;
 }
 
 .highlight pre {

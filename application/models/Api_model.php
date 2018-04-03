@@ -437,5 +437,24 @@
 	        }
 	        
         }
+        
+        public function verified_contracts($address, $code = NULL) {
+	        $this->db->where('address', $address);
+	        $sql = $this->db->get('contracts');
+	        if($sql->num_rows() > 0) {
+		        return $sql->row();
+	        }
+	        
+	        if($code) {
+		        $this->db->where('bytecode', $code);
+		        $sql = $this->db->get('contracts');
+		        if($sql->num_rows() > 0) {
+			        return $sql->row();
+		        }
+		    }
+	        
+	        
+	        return false;
+	    }
 
 }

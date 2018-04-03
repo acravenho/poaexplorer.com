@@ -405,6 +405,7 @@
 		addressArray['0xf1F51e933D6aAd056236E0a45c1cC5b335ca1A75'] = 'Stephen Arsenault';
 		addressArray['0x28E7605a631441870e80A283Aa43Ae4145f82cc3'] = 'Melanie Marsollier';
 		addressArray['0xdAd49e6CbDE849353ab27DeC6319E687BFc91A41'] = 'Alex Emelyanov';
+		addressArray['0x6E349BE21Acb0db3B2092fd4E3B738202842697E'] = 'Marat Pekker';
 		
 		for(var key in addressArray)
 		{
@@ -455,6 +456,17 @@
 		var formattedTime = month + ':' + day + ':' + year;
 		return formattedTime;
 	}
+	
+	var hash = document.location.hash;
+	var prefix = "tab_";
+	if (hash) {
+	    $('.nav-tabs a[href="'+hash.replace(prefix,"")+'"]').tab('show');
+	} 
+	
+	// Change hash for page-reload
+	$('.nav-tabs a').on('shown', function (e) {
+	    window.location.hash = e.target.hash.replace("#", "#" + prefix);
+	});
     
     
     
