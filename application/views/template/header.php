@@ -14,8 +14,8 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css?v=<?php echo strtotime("now"); ?>">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-theme.min.css?v=<?php echo strtotime("now"); ?>">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main.css?v=<?php echo strtotime("now"); ?>">
-        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>favicon.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>favicon.png">
 		<link rel="shortcut icon" href="<?php echo base_url(); ?>favicon.ico">
     </head>
     <body>
