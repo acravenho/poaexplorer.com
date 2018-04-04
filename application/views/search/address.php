@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<h2>Transaction History</h2>
-		<p class="lead"><?php echo ($contract == 1 ? '<i class="fa fa-file-text-o"></i> Contract ' : ''); ?> Address: <?php echo $this->uri->segment(3); ?> <?php echo (!empty($wallet->name) ? '('.$wallet->name.')' : ''); ?></p>
+		<p class="lead"><?php echo ($contract == 1 ? '<i class="fa fa-file-text-o"></i> Contract ' : ''); ?> Address: <?php echo $this->uri->segment(3); ?> <?php echo (!empty($wallet->name) ? '('.str_replace(':', '', $wallet->name).')' : ''); ?></p>
 		<hr />
 	</div>
 </div>
@@ -106,13 +106,13 @@
 							
 							if(strtolower($t->from) == strtolower($this->uri->segment(3))) {
 								if(!empty($t->from_name)) {
-									echo $t->from_name;
+									echo str_replace(':', '', $t->from_name);
 								} else {
 									echo substr($t->from, 0, 21).'...';
 								}
 							} else {
 								if(!empty($t->from_name)) {
-									echo '<a href="'.base_url().'address/search/'.$t->from.'">'.$t->from_name.'</a>';
+									echo '<a href="'.base_url().'address/search/'.$t->from.'">'.str_replace(':', '', $t->from_name).'</a>';
 								} else {
 									echo '<a href="'.base_url().'address/search/'.$t->from.'">'.substr($t->from, 0, 21).'....</a>';
 								}
@@ -135,13 +135,13 @@
 								
 								if(strtolower($t->to) == strtolower($this->uri->segment(3))) {
 									if(!empty($t->to_name)) {
-										echo $t->to_name;
+										echo str_replace(':', '', $t->to_name);
 									} else {
 										echo substr($t->to, 0, 21).'...';
 									}
 								} else {
 									if(!empty($t->to_name)) {
-										echo '<a href="'.base_url().'address/search/'.$t->to.'">'.$t->to_name.'</a>';
+										echo '<a href="'.base_url().'address/search/'.$t->to.'">'.str_replace(':', '', $t->to_name).'</a>';
 									} else {
 										echo '<a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'....</a>';
 									}

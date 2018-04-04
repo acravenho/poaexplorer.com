@@ -32,7 +32,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <a class="navbar-brand" href="/"><img src="<?php echo base_url(); ?>assets/img/poaimage.png" /></a>
+		      <a class="navbar-brand" href="/"><img src="<?php echo base_url(); ?>assets/img/avatar_site.png" /></a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
@@ -55,9 +55,7 @@
 		      </ul>
 		      
 		      <ul class="nav navbar-nav navbar-right">
-			      <li class="nav-item">
-			  		<a target="_blank" class="header_icon" href="https://github.com/acravenho/poaexplorer.com" title="POA Explorer Github"><i class="fa fa-github"></i></a>
-			  	</li>
+			     
 			  	<li class="nav-item">
 			  		<a target="_blank" class="header_icon" href="https://github.com/poanetwork" title="POA Network Github"><i class="fa fa-github-alt"></i></a>
 			  	</li>

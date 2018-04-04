@@ -21,7 +21,7 @@
 								
 								echo '<a href="'.base_url().'address/search/'.$t->from.'">';
 								if(!empty($t->from_name)) {
-									echo $t->from_name;
+									echo str_replace(':','',$t->from_name);
 								} else {
 									echo substr($t->from, 0, 21).'...';
 								}
@@ -45,7 +45,7 @@
 									
 									echo '<a href="'.base_url().'address/search/'.$t->to.'">';
 									if(!empty($t->to_name)) {
-										echo $t->to_name;
+										echo str_replace(':', '', $t->to_name);
 									} else {
 										echo substr($t->to, 0, 21).'...';
 									}
