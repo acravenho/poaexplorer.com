@@ -67,6 +67,10 @@ main, footer {
 	background-color: #622c99!important;
 }
 
+.navbar {
+	border-radius: 0px;
+}
+
 .network-health .pull-left, .network-health .pull-right {
 	width: 50%;
 }
