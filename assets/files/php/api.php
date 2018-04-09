@@ -11,31 +11,49 @@
 		die('Already running');
 	} 
 	
-	$sql = "SELECT * FROM blocks ORDER BY blocknum DESC LIMIT 1";
-	$res = $link->query($sql);
-	if($res->num_rows > 0) {
-		$row = $res->fetch_assoc();
-		$startBlock = $row['blocknum'] + 1;
-	}
+	$time_start = microtime(true);
 	
+	
+	for($t =1; $t<= 50; $t++) {
+		if(calculate_time($time_start) > 50) {
+			scriptoff($scriptname);
+			$link->close();
+			die();
+		}
 		
 	
-	$endBlock = $startBlock + 400;
-	$endBlock = (string) $endBlock;
-	
-	$poa   = new Ethereum('https://core.poa.network', '');
-	$blockHeight = $poa->eth_blockNumber(TRUE);
-	
-	$finishBlock = ($blockHeight > $endBlock ? $endBlock : $blockHeight);
-
-	for($x=$startBlock; $x < $finishBlock; $x++) {
-		get_block_info($x);
+		$sql = "SELECT * FROM blocks ORDER BY blocknum DESC LIMIT 1";
+		$res = $link->query($sql);
+		if($res->num_rows > 0) {
+			$row = $res->fetch_assoc();
+			$startBlock = $row['blocknum'] + 1;
+		}
 		
+			
+		
+		$endBlock = $startBlock + 400;
+		$endBlock = (string) $endBlock;
+		
+		$poa   = new Ethereum('https://core.poa.network', '');
+		$blockHeight = $poa->eth_blockNumber(TRUE);
+		
+		$finishBlock = ($blockHeight > $endBlock ? $endBlock : $blockHeight);
+	
+		for($x=$startBlock; $x < $finishBlock; $x++) {
+			get_block_info($x);	
+		}
+		sleep(1);
 	}
 	
 	scriptoff($scriptname);
 	
 	$link->close();
+	
+	function calculate_time($start) {
+		$current = microtime(true);
+		$seconds = ($current - $start);
+		return $seconds;
+	}
 	
 	function get_block_info($block) {
 		global $poa;
