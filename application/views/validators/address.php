@@ -8,7 +8,7 @@
 </div>
 <div class="row">
 	<div class="col-md-4">
-		<img src="<?php echo (!empty($validator->photo) ? $validator->photo : ''); ?>" style="margin-bottom: 30px;" />
+		<img src="<?php echo (!empty($validator->photo) ? $validator->photo : ''); ?>" style="margin-bottom: 30px; max-width:320px;" />
 	
 	
 		<ul class="list-group">
