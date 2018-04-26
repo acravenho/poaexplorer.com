@@ -76,24 +76,22 @@
 	    var confirmations = currentBlock - transaction.blockNumber;
 	    var blockFetch    = poa.eth.getBlock(transaction.blockNumber);
 	    
-	    
-	    
-	    
-	   
-	    
-	    var to = transaction.to;
+		var to = transaction.to;
+		
+		var fromBalance = poa.eth.getBalance(transaction.from);
 	    if(to == null)
 	    {
 		    $('#trans_to').html('[Contract <a href="/address/search/'+transaction.creates+'">'+transaction.creates+'</a>. Created] <span style="color:green;"><i class="fa fa-check-circle-o"></i></span>');
 	    }
 	    else
 	    {
-		    $('#trans_to').html('<a href="/address/search/'+transaction.to+'">'+transaction.to+'</a>');
+			var toBalance = poa.eth.getBalance(to);
+		    $('#trans_to').html('<a href="/address/search/'+transaction.to+'">'+transaction.to+'</a> <span style="color:black; margin-left:12px; font-size:10px;">(current balance: <span style="font-weight:bold;">'+ poa.fromWei(new BigNumber(toBalance).toFixed(), 'ether') +'</span> POA)</span>');
 	    }
 	    
 	    $('#trans_hash').html(transaction.blockHash);
 	    $('#trans_blockNumber').html('<a href="/blocks/block/'+transaction.blockNumber+'">'+transaction.blockNumber+'</a> ('+ confirmations +' block confirmations)');
-	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a>');
+	    $('#trans_from').html('<a href="/address/search/'+transaction.from+'">'+transaction.from+'</a> <span style="color:black; margin-left:12px; font-size: 10px;">(current balance: <span style="font-weight:bold;">'+ poa.fromWei(new BigNumber(fromBalance).toFixed(), 'ether') +'</span> POA)</span>');
 	    var now = new Date(blockFetch.timestamp*1000); 
 		var now_utc = (now.getUTCMonth()+1)+'-'+now.getUTCDate()+'-'+now.getUTCFullYear() + ' ' + now.getUTCHours()+':'+now.getUTCMinutes()+':'+now.getUTCSeconds()+' (UTC)';
 		
@@ -406,6 +404,8 @@
 		addressArray['0x28E7605a631441870e80A283Aa43Ae4145f82cc3'] = 'Melanie Marsollier';
 		addressArray['0xdAd49e6CbDE849353ab27DeC6319E687BFc91A41'] = 'Alex Emelyanov';
 		addressArray['0x6E349BE21Acb0db3B2092fd4E3B738202842697E'] = 'Marat Pekker';
+		addressArray['0xBC70E7A838eF3D468e25EfA5eCb8946d3D0f913B'] = 'Ilmira Nugumanova';
+		addressArray['0x71300d93a8CdF93385Af9635388cF2D00b95a480'] = 'Adam Kagy';
 		
 		for(var key in addressArray)
 		{
