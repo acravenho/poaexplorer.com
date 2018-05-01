@@ -71,6 +71,8 @@
 		    return;
 	    }
 	    
+	    console.log(transaction);
+	    
 	    
 	    var currentBlock = poa.eth.blockNumber;
 	    var confirmations = currentBlock - transaction.blockNumber;
@@ -97,7 +99,6 @@
 		
 		$('#trans_time').html(timeSince(blockFetch.timestamp) + ' - ' + now_utc);
 	    
-	    console.log(transaction.value);
 	    var transactionValue = poa.fromWei(transaction.value, 'ether');
 	    transactionValue = transactionValue.toFixed(18);
 	    //transactionValue = Number(transactionValue);
@@ -144,7 +145,6 @@
 			{
 				
 				for(var i=0; i<out.result.trace.length; i++) {
-	                console.log(out.result.trace[i]);
 	                var type = out.result.trace[i].type;
 	                
 	                if(type == 'call')
@@ -154,6 +154,13 @@
 		                var value = out.result.trace[i].action.value;
 		                var ovalue = poa.fromWei(value, 'ether');
 		            }
+		            else if(type == 'suicide')
+		            {
+			            var fromt = out.result.trace[i].action.address;
+		                var to    = out.result.trace[i].action.refundAddress;
+		                var value = out.result.trace[i].action.balance;
+		                var ovalue = poa.fromWei(value, 'ether');
+		            } 
 		            else
 		            {
 			            var fromt = out.result.trace[i].action.from;
