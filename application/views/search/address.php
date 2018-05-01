@@ -96,7 +96,7 @@
 					foreach($transactions as $t) {
 						echo '<tr>';
 							echo '<td><a href="'.base_url().'blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
-							echo '<td><a href="'.base_url().'tx/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
+							echo '<td>'.($t->status == 0 ? '<span style="color:red"><i class="fa fa-exclamation"></i></span>' : '<span style="color:green;"><i class="fa fa-check-square"></i></span>').' <a href="'.base_url().'tx/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
 							echo '<td>'.($t->time > 0 ? _ago($t->time) : '-').'</td>';
 							
 							echo '<td>';
