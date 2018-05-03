@@ -413,6 +413,7 @@
 		addressArray['0x6E349BE21Acb0db3B2092fd4E3B738202842697E'] = 'Marat Pekker';
 		addressArray['0xBC70E7A838eF3D468e25EfA5eCb8946d3D0f913B'] = 'Ilmira Nugumanova';
 		addressArray['0x71300d93a8CdF93385Af9635388cF2D00b95a480'] = 'Adam Kagy';
+		addressArray['0x59D82a4B6068188ac06605A8416b5C7D40d6Fc43'] = 'Xiaobo Chen';
 		
 		for(var key in addressArray)
 		{
