@@ -162,7 +162,7 @@
         
         public function get_transactions_by_address($limit = 20, $start = 0) {
 	        
-	        $address = $this->uri->segment(3);
+	        $address = $this->uri->segment(2);
 	        $this->db->limit($limit, $start);
 	        $this->db->where('to', $address);
 	        $this->db->or_where('from', $address);
@@ -329,7 +329,7 @@
         
         public function get_internal_transactions_account()
         {
-	        $address = $this->uri->segment(3);
+	        $address = $this->uri->segment(2);
 	        $this->db->where('to', $address);
 	        $this->db->or_where('from', $address);
 	        $this->db->or_where('address', $address);

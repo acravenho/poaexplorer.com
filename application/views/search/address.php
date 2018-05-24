@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<h2>Transaction History</h2>
-		<p class="lead"><?php echo ($contract == 1 ? '<i class="fa fa-file-text-o"></i> Contract ' : ''); ?> Address: <?php echo $this->uri->segment(3); ?> <?php echo (!empty($wallet->name) ? '('.str_replace(':', '', $wallet->name).')' : ''); ?></p>
+		<p class="lead"><?php echo ($contract == 1 ? '<i class="fa fa-file-text-o"></i> Contract ' : ''); ?> Address: <?php echo $this->uri->segment(2); ?> <?php echo (!empty($wallet->name) ? '('.str_replace(':', '', $wallet->name).')' : ''); ?></p>
 		<hr />
 	</div>
 </div>
@@ -96,7 +96,7 @@
 					foreach($transactions as $t) {
 						echo '<tr>';
 							echo '<td><a href="'.base_url().'blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
-							echo '<td>'.($t->status == 0 ? '<span style="color:red"><i class="fa fa-exclamation"></i></span>' : '<span style="color:green;"><i class="fa fa-check-square"></i></span>').' <a href="'.base_url().'tx/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
+							echo '<td>'.($t->status == 0 && !empty($t->status) ? '<span style="color:red"><i class="fa fa-exclamation"></i></span>' : '<span style="color:green;"><i class="fa fa-check-square"></i></span>').' <a href="'.base_url().'tx/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
 							echo '<td>'.($t->time > 0 ? _ago($t->time) : '-').'</td>';
 							
 							echo '<td>';
@@ -104,7 +104,7 @@
 								echo '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i> ';
 							}
 							
-							if(strtolower($t->from) == strtolower($this->uri->segment(3))) {
+							if(strtolower($t->from) == strtolower($this->uri->segment(2))) {
 								if(!empty($t->from_name)) {
 									echo str_replace(':', '', $t->from_name);
 								} else {
@@ -120,7 +120,7 @@
 							echo '</td>';
 						
 							
-							echo '<td>'.($t->from == $this->uri->segment(3) ? '<span class="label label-warning">&nbsp;OUT&nbsp;</span>' : '<span class="label label-success">&nbsp;IN&nbsp;</span>').'</td>';
+							echo '<td>'.($t->from == $this->uri->segment(2) ? '<span class="label label-warning">&nbsp;OUT&nbsp;</span>' : '<span class="label label-success">&nbsp;IN&nbsp;</span>').'</td>';
 							
 							if(empty($t->to))
 							{
@@ -133,7 +133,7 @@
 									echo '<i class="fa fa-file-text-o" rel="tooltip" data-placement="bottom" title="" data-original-title="Contract"></i> ';
 								}
 								
-								if(strtolower($t->to) == strtolower($this->uri->segment(3))) {
+								if(strtolower($t->to) == strtolower($this->uri->segment(2))) {
 									if(!empty($t->to_name)) {
 										echo str_replace(':', '', $t->to_name);
 									} else {
@@ -146,6 +146,12 @@
 										echo '<a href="'.base_url().'address/search/'.$t->to.'">'.substr($t->to, 0, 21).'....</a>';
 									}
 								}
+								
+								if(strtolower($t->to) == strtolower('0xb87b6077d59b01ab9fa8cd5a1a21d02a4d60d358')) {
+									echo ' <i class="fa fa-road" style="padding: 0 10px;" rel="tooltip" data-placement="bottom" title="" data-original-title="Road"></i> <a target="_blank" href="https://etherscan.io/token/0x6758b7d441a9739b98552b373703d8d3d14f9e62?a='.$t->from.'">POA ERC20</a>';
+									
+								}
+								
 								echo '</td>';
 							}
 							
@@ -177,11 +183,11 @@
 								echo '<td><a href="'.base_url().'tx/'.$internal->parent.'">'.substr($internal->parent,0,21).'</a></td>';
 								echo '<td><a href="'.base_url().'blocks/block/'.$internal->block.'">'.$internal->block.'</a></td>';
 								echo '<td>'.(!empty($internal->age) ? _ago($internal->age) : '-').'</td>';
-								echo '<td>'.($internal->from !== $this->uri->segment(3) ? '<a href="'.base_url().'address/search/'.$internal->from.'">'.substr($internal->from,0,21).'...</a>' : substr($internal->from,0,21).'...').'</td>';
+								echo '<td>'.($internal->from !== $this->uri->segment(2) ? '<a href="'.base_url().'address/search/'.$internal->from.'">'.substr($internal->from,0,21).'...</a>' : substr($internal->from,0,21).'...').'</td>';
 								
 								echo '<td><i class="fa fa-arrow-right"></i></td>';
 								
-								echo '<td>'.($internal->to !== $this->uri->segment(3) ? '<a href="'.base_url().'address/search/'.$internal->to.'">'.substr($internal->to,0,21).'...</a>' : substr($internal->to,0,21).'...').'</td>';
+								echo '<td>'.($internal->to !== $this->uri->segment(2) ? '<a href="'.base_url().'address/search/'.$internal->to.'">'.substr($internal->to,0,21).'...</a>' : substr($internal->to,0,21).'...').'</td>';
 								echo '<td>'.$internal->value.'</td>';
 							echo '</tr>';
 						}
