@@ -34,7 +34,7 @@
 		$endBlock = $startBlock + 400;
 		$endBlock = (string) $endBlock;
 		
-		$poa   = new Ethereum('https://core.poa.network', '');
+		$poa   = new Ethereum('https://sokol.poa.network', '');
 		$blockHeight = $poa->eth_blockNumber(TRUE);
 		
 		$finishBlock = ($blockHeight > $endBlock ? $endBlock : $blockHeight);
@@ -206,13 +206,27 @@
 		if(!$link->query($insert)) {
 			printf("Errormessage: %s\n", mysqli_error($link));
 		}
+
+		if(!empty($data['to'])) {
+			if(check_wallet($data['to']) == true) {
+				 insert_wallet($data['to']);
+			 } else {
+				 update_wallet($data['to']);
+			 }
+		 }
+		 
+		 if(check_wallet($data['from']) == true) {
+			 insert_wallet($data['from']);
+		 } else {
+			 update_wallet($data['from']);
+		 }
 		
 	}
 	
 	
 	function get_internal_transaction($txid)
 	{
-		$trace = new Ethereum('https://core-trace.poa.network', '');
+		$trace = new Ethereum('https://sokol-trace.poa.network', '');
 		$internal = $trace->eth_sendTrace("trace_replayTransaction", array("$txid", array('trace')));
 		
 		if(!empty($internal))
