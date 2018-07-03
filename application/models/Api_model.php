@@ -356,7 +356,7 @@
         {
 	        $block = ($block == NULL ? $this->last_block() : $block);
 	        $start     = 252460800;
-	        $twenty    = $start - ($start * .2) + $block;
+	        $twenty    = $start - ($start * .15) + $block;
 	        return $twenty;
 	        
         }
