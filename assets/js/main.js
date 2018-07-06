@@ -111,6 +111,20 @@
 	    var transfee = gasprice * transaction.gas;
 	    
 	    var receipt  = transaction_receipt(hash);
+	    if (receipt.logs[0]) {
+		    if (receipt.logs[0].topics[0]) {
+			    if (receipt.logs[0].topics[0] === '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef') {
+				    var tokento = AddressWithoutPadding(receipt.logs[0].topics[2]);
+				    var tokenfrom = AddressWithoutPadding(receipt.logs[0].topics[1]);
+				    var tokenamount = poa.toBigNumber(receipt.logs[0].data).toFixed();
+				    console.log('token to: ' + tokento);
+				    console.log('tokens from: ' + tokenfrom);
+				    console.log('tokens amount: ' + tokenamount);
+				    $('.value').after('<tr><th>Token Transfer:</th><td class="tokendata"><img src="/assets/img/ajax-loader.gif" /></td></tr>');
+				    $('.tokendata').load('/assets/files/php/tokens.php?contract=' + to + '&network=core&value=' + tokenamount + '&tokento=' + tokento + '&tokenfrom=' + tokenfrom);
+			    }
+		    }
+	    }
 	    var status   = poa.toDecimal(receipt.status);
 	    if(status === 1)
 	    {
