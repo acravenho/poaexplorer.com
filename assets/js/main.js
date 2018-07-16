@@ -143,7 +143,11 @@
 	    $('.trans_gas').html(transaction.gas);
 	    $('.trans_gasPrice').text(gasprice + ' POA');
 	    $('#trans_nonce').html(transaction.nonce);
-	    $('#trans_input .highlight pre').html(transaction.input);
+	    if(transaction.input.length >= 10) {
+		    $('#trans_input .highlight pre').load('/assets/files/php/contract_signature.php?input=' + transaction.input);
+	    } else {
+	    	$('#trans_input .highlight pre').html(transaction.input);
+	    }
 	 }
 	 
 	 function convertDateToUTC(date) { return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); }
