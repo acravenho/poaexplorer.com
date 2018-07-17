@@ -11,7 +11,8 @@
 			<tr><th style="width:20%;">From:</th><td id="trans_from"></td></tr>
 			<tr><th style="width:20%;">To:</th><td id="trans_to"></td></tr>
 			<tr class="value"><th style="width:20%;">Value:</th><td id="trans_value"></td></tr>
-			<tr><th style="width:20%;">Gas:</th><td><span class="trans_gas"></span></td></tr>
+			<tr><th style="width:20%;">Gas Limit:</th><td><span class="trans_gas"></span></td></tr>
+			<tr><th style="width:20%;">Gas Used:</th><td><span class="trans_used"></span></td></tr>
 			<tr><th style="width:20%;">Gas Price:</th><td><span class="trans_gasPrice"></span> (<span class="trans_gwei"></span> GWEI)</td></tr>
 			<tr><th style="width:20%;">Actual Tx Cost/Fee:</th><td id="trans_txfee"></td></tr>
 			<tr><th style="width:20%;">Nonce:</th><td id="trans_nonce"></td></tr>

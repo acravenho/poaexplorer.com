@@ -141,6 +141,7 @@
 	    $('#trans_txfee').html(createNumber(transfee));
 	    $('.trans_gwei').html(gasgwei);
 	    $('.trans_gas').html(transaction.gas);
+	    $('.trans_used').html(receipt.gasUsed);
 	    $('.trans_gasPrice').text(gasprice + ' POA');
 	    $('#trans_nonce').html(transaction.nonce);
 	    if(transaction.input.length >= 10) {
