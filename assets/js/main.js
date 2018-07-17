@@ -108,8 +108,6 @@
 	    var gasprice = poa.fromWei(transaction.gasPrice.toFixed(9), 'ether');
 	    var gasgwei  = poa.fromWei(transaction.gasPrice.toFixed(9), 'gwei');
 	    
-	    var transfee = gasprice * transaction.gas;
-	    
 	    var receipt  = transaction_receipt(hash);
 	    console.log(receipt);
 	    if (receipt.logs) {
@@ -137,7 +135,7 @@
 		    $('#trans_status').html('<span style="color:red; font-weight:bold;">Failed</span>');
 	    }
 	    
-	    
+	    var transfee = gasprice * receipt.gasUsed;
 	    $('#trans_txfee').html(createNumber(transfee));
 	    $('.trans_gwei').html(gasgwei);
 	    $('.trans_gas').html(transaction.gas);
