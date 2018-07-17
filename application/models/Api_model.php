@@ -299,6 +299,20 @@
 	        $this->db->where('validator', $address);
 	        $sql = $this->db->get('blocks');
 	        if($sql->num_rows() > 0) {
+		        $results = array();
+		        foreach($sql->result() as $row) {
+			        $row->trans = $this->get_transactions_by_block($row->blocknum);
+			        $results[] = $row;
+		        }
+		        return $results;
+	        }
+	        return false;
+        }
+        
+        public function get_transactions_by_block($block) {
+	        $this->db->where('blockNumber', $block);
+	        $sql = $this->db->get('transactions');
+	        if($sql->num_rows() > 0) {
 		        return $sql->result();
 	        }
 	        return false;
