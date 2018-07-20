@@ -117,9 +117,27 @@
 					    if (receipt.logs[y].topics[0] === '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef') {
 						    var tokento = AddressWithoutPadding(receipt.logs[y].topics[2]);
 						    var tokenfrom = AddressWithoutPadding(receipt.logs[y].topics[1]);
-						    var tokenamount = poa.toBigNumber(receipt.logs[y].data).toFixed();
-						    $('.value').after('<tr><th>Token Transfer:</th><td class="tokendata"><img src="/assets/img/ajax-loader.gif" /></td></tr>');
-						    $('.tokendata').load('/assets/files/php/tokens.php?contract=' + receipt.logs[y].address + '&network=core&value=' + tokenamount + '&tokento=' + tokento + '&tokenfrom=' + tokenfrom);
+						    if (receipt.logs[y].data.length > 10) {
+							    var tokenamount = poa.toBigNumber(receipt.logs[y].data).toFixed();
+							} else {
+								var tokenamount = 0;
+							}
+								
+							if (receipt.logs[y].topics.length > 3) {
+								var tokentype = 721;
+								var tokenid = poa.toBigNumber(receipt.logs[y].topics[3]);
+							} else {
+								var tokentype = 20;
+								var tokenid = 0;
+							}
+	 						    
+							    console.log('token to: ' + tokento);
+							    console.log('tokens from: ' + tokenfrom);
+							    console.log('tokens amount: ' + tokenamount);
+							    $('.value').after('<tr><th>Token Transfer:</th><td class="tokendata"><img src="/assets/img/ajax-loader.gif" /></td></tr>');
+							    $('.tokendata').load('/assets/files/php/tokens.php?contract=' + receipt.logs[y].address + '&network=core&value=' + tokenamount + '&tokento=' + tokento + '&tokenfrom=' + tokenfrom + '&type=' + tokentype + '&id=' + tokenid);
+						    
+						   
 					    }
 				    }
 		    	}
