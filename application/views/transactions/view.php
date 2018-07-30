@@ -12,7 +12,7 @@
 						echo '<tr>';
 							echo '<td><a href="'.base_url().'blocks/block/'.$t->blockNumber.'">'.$t->blockNumber.'</a></td>';
 							echo '<td>'.(!empty($t->time) ? _ago($t->time). ' ago' : '-').'</td>';
-							echo '<td><a href="'.base_url().'tx/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
+							echo '<td>'.($t->status == 0 ? '<span style="color:red"><i class="fa fa-exclamation"></i></span>' : '<span style="color:green;"><i class="fa fa-check-square"></i></span>').' <a href="'.base_url().'tx/'.$t->txid.'">'.substr($t->txid, 0, 21).'...</a></td>';
 							
 							echo '<td>';
 								if($t->from_contract == 1) {
