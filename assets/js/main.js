@@ -454,7 +454,7 @@
 		addressArray['0xd495483cF6373B619cF770a2A279EF4Be7afBD0D'] = 'James McGrath';
 		addressArray['0x0C6C0665804fD28CD8d1B2208104E31Ce2051Ce2'] = 'Kristina Yevseyeva';
 		addressArray['0x5EE341Ac44D344AdE1cA3a771c59B98eb2A77DF2'] = 'Oxana Kunets';
-		addressArray['0x66C9343C7e8CA673A1FEdf9Dbf2CD7936dBBf7e3'] = 'Walter Karshtat';
+		addressArray['0x66C9343C7e8CA673A1FEdf9Dbf2CD7936dBBf7e3'] = 'Walter Karshat';
 		
 		for(var key in addressArray)
 		{
