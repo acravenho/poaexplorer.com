@@ -25,7 +25,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<p class="lead">Internal Tranactions</p>
+		<p class="lead">Internal Transactions</p>
 		<hr />
 		<table class="table table-striped transaction_table" id="internalTransactions">
 			<thead>
